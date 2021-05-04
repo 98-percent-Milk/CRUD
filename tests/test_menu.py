@@ -1,7 +1,7 @@
 import pytest
 import mock
 import builtins
-from ..menu import Menu
+from menu import Menu
 
 def test_private_attributes():
     menu = Menu()
