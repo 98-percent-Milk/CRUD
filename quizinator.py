@@ -1,22 +1,28 @@
+# quizinator.py Beta version of the quizinator app
+#
+# Author: Team 3
+# Date: April 30th, 2021
 import json
+from flashcard import FlashCard
 from os import path
-class Quiz:
-    """ Quizinator class demo concept """
-    def __init__(self, data_path:str="data.json"):
-        """ Load flash card data from local storage
 
+class Quiz:
+    """ Beta version of the Quiz flash card app """
+    def __init__(self, data_path:str = 'data.json') -> None:
+        """ Load flash card data from local storage 
+        
         Parameter
-        --------------
+        ---------------
         data_path: str
-            path to json file containing flash card data
+            Path to local storage
 
         Return
-        --------------
-            None
+        ---------------
+        None
         """
-        if not path.exists(data_path): # If file does not exist exit
+        if not path.exists(data_path):
             raise FileNotFoundError
 
-        self.quizinator = None
+        self.quizinator = {}
         with open(data_path, 'r') as f:
             self.quizinator = json.load(f)
