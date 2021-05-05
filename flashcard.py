@@ -1,8 +1,10 @@
 """
-falshcard.py Beta version of flash card for quizinator app
+flashcard.py Beta version of flash card for quizinator app
 Author: Team 3
 Date: April 30th
 """
+
+from quizinator import Quiz
 
 class FlashCard:
     """ Beta Flash Card class for quizinator app """
@@ -34,9 +36,15 @@ class FlashCard:
             raise ValueError
 
 
-    def edit_flashcard(self, term:str):
+    def edit_flashcard(self, key):
         """ Allows you to edit existing flashcards """
+        quiz = Quiz()
         #for every item in the list
+        for items in quiz.quizinator:
             #if the term matches the search term
+            if items == key:
                 #term = new_term
+                term = input('Please input new term: ')
                 #definition = new_definition
+                definition = input('Please input new definition: ')
+                items[key] = [term, definition]
