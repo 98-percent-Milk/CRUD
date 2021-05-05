@@ -28,8 +28,11 @@ class Quiz:
         with open(data_path, 'r') as f:
             self.quizinator = json.load(f)
 
-        self._flashcard = [card for card in self.quizinator.keys()]
-
+        self._flashcard = [
+            [k,self.quizinator[k]['term']] for k in self.quizinator.keys()
+                            if isinstance(self.quizinator[k], dict)
+                          ]
+        
     def _get_input(self, question:str) -> str:
         """ Ensures user input is not empty
         
@@ -50,9 +53,9 @@ class Quiz:
                 print("\n\tInvalid!!! Input can't be empty. Try Again\n")
         return result
 
-    def _check_flashcard(self, term:str):
+    def _check_flashcard(self, term:str) -> None:
         """ Check if the flashcard already exists in the database or not 
-
+        If exists display Term and Definition on the screen
         Parameter
         --------------
         term: str
@@ -63,7 +66,31 @@ class Quiz:
         found: bool
             True if flashcard exists in the database else False
         """
-        return True if (term in self._flashcard) else False
+        for x in self._flashcard:
+            if term in x:
+                print(f"Flashcard for <{term}> exists!")
+                print(f"\n\t<{term.title()}>: {self.quizinator[x[0]]['def']}\n")
+                return True
+        return False
+
+    def generate_id(self):
+        """ Generates new unique id for the flashcard
+
+        Parameter
+        --------------
+        None
+
+        Return
+        -------------
+        new_id: str
+            new unique id
+        """
+        new_id = ''
+        if not self.quizinator['id'] == []:
+            new_id = self.quizinator['id'].pop()
+        else:
+            new_id = str(len(self.quizinator))
+        return new_id
 
     def add_flashcard(self) -> None:
         """ Add new flashcard into local json database
@@ -78,15 +105,14 @@ class Quiz:
         None
         """
         flashcard = FlashCard()
+        new_id = self.generate_id()
         term = self._get_input("Enter term for flashcard: ")
-        while term in self._flashcard:
-            print(f"Flashcard for <{term}> exists!")
-            print(f'\t{term}: {self.quizinator[term]}')
+        while self._check_flashcard(term):
             term = self._get_input("Enter term for flashcard: ")
         definition = self._get_input(f"Enter definition for {term}: ")
-        flashcard.create_flashcard(term, definition)
+        flashcard.create_flashcard(term, definition, new_id)
         # Flashcard object will be left unused until we figure out how to implement the unique ID's
-        self.quizinator[term] = {'definition': definition}
+        self.quizinator[new_id] = flashcard.serialize()
     
     def save_quizinator(self):
         """ Save current flashcards into(overight) local storage
