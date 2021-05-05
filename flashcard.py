@@ -32,3 +32,11 @@ class FlashCard:
             self.definition = definition
         else:
             raise ValueError
+
+
+    def edit_flashcard(self, term:str):
+        """ Allows you to edit existing flashcards """
+        #for every item in the list
+            #if the term matches the search term
+                #term = new_term
+                #definition = new_definition
