@@ -4,7 +4,7 @@ Author: Team 3
 Date: April 30th
 """
 
-from quizinator import Quiz
+# from quizinator import Quiz
 
 class FlashCard:
     """ Beta Flash Card class for quizinator app """
@@ -12,8 +12,9 @@ class FlashCard:
         """ Initializes a new Flashcard """
         self.term = ''
         self.definition = ''
+        self.id = ''
 
-    def create_flashcard(self, term:str, definition:str) -> None:
+    def create_flashcard(self, term:str, definition:str, new_id) -> None:
         """ Create new flashcard from user input
 
         Parameter
@@ -32,19 +33,24 @@ class FlashCard:
                 raise ValueError
             self.term = term
             self.definition = definition
+            self.id = new_id
         else:
             raise ValueError
 
 
-    def edit_flashcard(self, key):
+    def edit_flashcard(self, quiz_list, key):
         """ Allows you to edit existing flashcards """
-        quiz = Quiz()
-        #for every item in the list
-        for items in quiz.quizinator:
-            #if the term matches the search term
-            if items == key:
-                #term = new_term
-                term = input('Please input new term: ')
-                #definition = new_definition
-                definition = input('Please input new definition: ')
-                items[key] = [term, definition]
+        quiz = quiz_list
+
+        if str(key) in quiz.keys():
+            for items in quiz:
+                if items == str(key):
+                    print(f'Current flashcard: {quiz[items]}')
+                    term = input('Please input new term: ')
+                    definition = input('Please input new definition: ')
+                    quiz[items]["term"] = term
+                    quiz[items]["def"] = definition
+                    print(f'Updated flashcard: {quiz[items]}')
+                    # serialize and save to JSON
+        else:
+            print(f'The flashcard with the given ID ({key}) does not exist.')
