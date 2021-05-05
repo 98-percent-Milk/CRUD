@@ -64,13 +64,3 @@ class Menu:
         print("\t3. Update flash card")
         print("\t4. Delete flash card")
         print("\t5. Exit\n")
-
-
-
-if __name__ == '__main__':
-    menu = Menu()
-    a = 0
-    while a != 5:
-        menu.display_menu
-        a = menu._get_choice_input
-        print(a)

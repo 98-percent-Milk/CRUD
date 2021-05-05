@@ -4,8 +4,6 @@ Author: Team 3
 Date: April 30th
 """
 
-# from quizinator import Quiz
-
 class FlashCard:
     """ Beta Flash Card class for quizinator app """
     def __init__(self):
@@ -14,28 +12,36 @@ class FlashCard:
         self.definition = ''
         self.id = ''
 
-    def create_flashcard(self, term:str, definition:str, new_id) -> None:
+    def create_flashcard(self, term:str, definition:str, unique_id:str) -> None:
         """ Create new flashcard from user input
 
         Parameter
         --------------
-        term:str
+        term: str
             Flashcard's term
-        definition:str
+        definition: str
             Definition of the flashcard's term
-
+        unique_id: str
+            Unique id for flashcard
         Return
         -------------
         None
         """
-        if isinstance(term, str) and isinstance(definition, str):
+        if isinstance(term, str) and isinstance(definition, str) and isinstance(definition, str):
             if term == '' or definition == '':
                 raise ValueError
             self.term = term
             self.definition = definition
-            self.id = new_id
+            self.id = unique_id
         else:
             raise ValueError
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'term': self.term,
+            'def': self.definition
+        }
 
 
     def edit_flashcard(self, quiz_list, key):
@@ -51,6 +57,6 @@ class FlashCard:
                     quiz[items]["term"] = term
                     quiz[items]["def"] = definition
                     print(f'Updated flashcard: {quiz[items]}')
-                    # serialize and save to JSON
+                    # save to JSON
         else:
             print(f'The flashcard with the given ID ({key}) does not exist.')
