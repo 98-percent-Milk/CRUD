@@ -107,11 +107,12 @@ class Quiz:
         flashcard = FlashCard()
         new_id = self.generate_id()
         term = self._get_input("Enter term for flashcard: ")
+
         while self._check_flashcard(term):
             term = self._get_input("Enter term for flashcard: ")
+
         definition = self._get_input(f"Enter definition for {term}: ")
         flashcard.create_flashcard(term, definition, new_id)
-        
         self.quizinator[new_id] = flashcard.serialize()
     
     def save_quizinator(self):
@@ -133,5 +134,3 @@ if __name__ == '__main__':
     quiz = Quiz()
     quiz.add_flashcard()
     quiz.save_quizinator()
-
-                    
