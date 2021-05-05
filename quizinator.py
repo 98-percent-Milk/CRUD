@@ -111,7 +111,7 @@ class Quiz:
             term = self._get_input("Enter term for flashcard: ")
         definition = self._get_input(f"Enter definition for {term}: ")
         flashcard.create_flashcard(term, definition, new_id)
-        # Flashcard object will be left unused until we figure out how to implement the unique ID's
+        
         self.quizinator[new_id] = flashcard.serialize()
     
     def save_quizinator(self):
