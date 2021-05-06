@@ -60,3 +60,15 @@ class FlashCard:
                     # save to JSON
         else:
             print(f'The flashcard with the given ID ({key}) does not exist.')
+
+    def remove_flashcard(self,quiz_list):
+        """ takes flashcard_id as input and deletes the coressponding flashcard"""
+        quiz = quiz_list
+
+        user_input  = input('Enter the flashcard id you want to remove ')
+        while user_input not in quiz.keys():
+            print('There is no flashcard', user_input)
+            user_input = input('Re-enter the term you want to remove ')
+        quiz.pop(user_input)
+        print('the flashcard', user_input ,' has been deleted')
+        return None
