@@ -2,7 +2,7 @@
 import pytest
 import mock
 import builtins
-from ..quizinator import Quiz
+from quizinator import Quiz
 
 @pytest.fixture(name='quiz')
 def fixture_quiz():

@@ -1,5 +1,7 @@
 """ Unit test for flashcard class """
 import pytest
+import mock
+import builtins
 from flashcard import FlashCard
 from quizinator import Quiz
 
@@ -52,3 +54,11 @@ def test_serialization(flashcard):
 
 # tests for edting
 def test_edit_fc(flashcard):
+    quiz = Quiz()
+    # quiz_list = dict()
+    quiz.quizinator['123'] = {'id': '123', 'term': 'python', 'def': 'programming language'}
+    with mock.patch.object(builtins, 'input', side_effect=['Python', 'something']):
+        flashcard.edit_flashcard(quiz.quizinator, '123')
+        assert quiz.quizinator['123']['id'] == '123'   
+        assert quiz.quizinator['123']['term'] == 'Python'
+        assert quiz.quizinator['123']['def'] == 'something'
