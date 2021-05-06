@@ -1,5 +1,5 @@
 """
-falshcard.py Beta version of flash card for quizinator app
+flashcard.py Beta version of flash card for quizinator app
 Author: Team 3
 Date: April 30th
 """
