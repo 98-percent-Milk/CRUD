@@ -16,7 +16,7 @@ def main():
             quiz.view_flashcard()
 
         elif choice == 3:
-            print('\nHere are your flahscards\n', quiz.quizinator) #replace with function to view all flashcards
+            print('\nHere are your flahscards\n', quiz.view_flashcard())
             key = input('Which flashcard would you like to update? ')
             flashcard.edit_flashcard(quiz.quizinator, key)
             quiz.save_quizinator()
