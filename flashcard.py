@@ -62,7 +62,7 @@ class FlashCard:
             return f'The flashcard with the given ID ({key}) does not exist.'
 
     def remove_flashcard(self,quiz_list):
-        """ takes flashcard_id as input and deletes the coressponding flashcard"""
+        """ takes flashcard_id as input and deletes the corresponding flashcard"""
         quiz = quiz_list
 
         user_input  = input('Enter the flashcard id you want to remove ')
