@@ -12,9 +12,9 @@ def main():
         choice = menu._get_choice_input
 
         if choice == 2:
-            print(f'All {flashcard.number_of_cards(quiz.quizinator)} in this study set')
-            flashcard.view_flashcard(quiz.quizinator)
-            
+            print(f'All flashcards in this study set')
+            quiz.view_flashcard()
+
         elif choice == 3:
             print('\nHere are your flahscards\n', quiz.quizinator) #replace with function to view all flashcards
             key = input('Which flashcard would you like to update? ')
