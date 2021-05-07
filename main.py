@@ -14,17 +14,18 @@ def main() -> None:
             quiz.add_flashcard()
 
         elif choice == 2:
-            print(f'All flashcards in this study set')
+            menu.display_frame('All flashcards in this study set')
             quiz.view_flashcard()
 
         elif choice == 3:
-            print('\nHere are your flashcards')
+            # print('\nHere are your flashcards')
+            menu.display_frame('Here are your flashcards')
             quiz.view_flashcard() #replace with function to view all flashcards
             term = input('\nWhich flashcard would you like to update? (Please input the Term): ')
             quiz.edit_flashcard(term)
 
         elif choice == 4:
-            print('Here are your flashcards:')
+            menu.display_frame('Here are your flashcards:')
             quiz.view_flashcard()
             print()
             quiz.remove_flashcard()

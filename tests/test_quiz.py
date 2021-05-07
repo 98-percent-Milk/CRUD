@@ -3,6 +3,7 @@ import pytest
 import mock
 import builtins
 from quizinator import Quiz
+from flashcard import FlashCard
 
 @pytest.fixture(name='quiz')
 def fixture_quiz():
@@ -38,3 +39,16 @@ def test_add_fc_again(quiz):
 def test_check_fc(quiz):
     """ Unit test for checking if the flashcard already exists in the database """
     assert quiz._check_flashcard('python') == True
+
+# tests for edting
+def test_edit_fc(quiz):
+    with mock.patch.object(builtins, 'input', side_effect=['Cat', 'happy friend']):
+        # quiz.add_flashcard()
+        quiz.edit_flashcard('Python')
+        assert quiz.quizinator['1']['id'] == '1'   
+        assert quiz.quizinator['1']['term'] == 'Cat'
+        assert quiz.quizinator['1']['def'] == 'happy friend'
+
+def test_edit_no_fc(quiz):
+    with pytest.raises(ValueError):
+        quiz.edit_flashcard('Dog')

@@ -52,21 +52,7 @@ def test_serialization(flashcard):
     }
 
 
-# tests for edting
-def test_edit_fc(flashcard):
-    quiz = Quiz()
-    quiz.quizinator['123'] = {'id': '123', 'term': 'python', 'def': 'programming language'}
-    with mock.patch.object(builtins, 'input', side_effect=['Python', 'something']):
-        flashcard.edit_flashcard(quiz.quizinator, '123')
-        assert quiz.quizinator['123']['id'] == '123'   
-        assert quiz.quizinator['123']['term'] == 'Python'
-        assert quiz.quizinator['123']['def'] == 'something'
 
-def test_edit_no_fc(flashcard):
-    quiz = Quiz()
-    quiz.quizinator['123'] = {'id': '123', 'term': 'python', 'def': 'programming language'}
-    with mock.patch.object(builtins, 'input', side_effect=['Python', 'something']):
-        assert flashcard.edit_flashcard(quiz.quizinator, '13') == 'The flashcard with the given ID (13) does not exist.'
 
 # tests for removing
 def test_remove_fc(flashcard):
