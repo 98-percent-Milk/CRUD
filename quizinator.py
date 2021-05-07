@@ -109,7 +109,7 @@ class Quiz:
 
         while self._check_flashcard(term):
             term = self._get_input("Enter term for flashcard: ")
-
+        self._flashcard.append([new_id, term])
         definition = self._get_input(f"Enter definition for {term}: ")
         flashcard.create_flashcard(term, definition, new_id)
         self.quizinator[new_id] = flashcard.serialize()
@@ -142,6 +142,7 @@ class Quiz:
         None
         """
         # Check if the key exists in the database
+        print(self._flashcard)
         if key not in [x[1] for x in self._flashcard]:
             raise ValueError(f'The flashcard ({key}) does not exist.')
         
