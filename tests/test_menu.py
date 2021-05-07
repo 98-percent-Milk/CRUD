@@ -19,11 +19,10 @@ def test_get_choice_input_valid(menu):
         assert menu._get_choice_input == 1
 
 def test_get_choice_input_invalid(menu):
-    """ Unit test for invalid user input """
     with mock.patch.object(builtins, 'input', side_effect=[6, -1, 99, 1]):
         assert menu._get_choice_input == 1
 
 def test_get_input_valueError(menu):
-    """ Unit test for non integer type values """
+    # with pytest.raises(ValueError):
     with mock.patch.object(builtins, 'input', side_effect=['1.2', 'potato', '1']):
         menu._get_choice_input

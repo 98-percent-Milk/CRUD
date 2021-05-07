@@ -2,12 +2,7 @@
     "id": [],
     "1": {
         "id": "1",
-        "term": "Python",
+        "term": "python",
         "def": "main language"
-    },
-    "2": {
-        "id": "2",
-        "term": "java",
-        "def": "another language"
     }
 }
