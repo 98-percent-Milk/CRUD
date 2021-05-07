@@ -59,4 +59,4 @@ class FlashCard:
                     print(f'Updated flashcard: {quiz[items]}')
                     # save to JSON
         else:
-            print(f'The flashcard with the given ID ({key}) does not exist.')
+            return f'The flashcard with the given ID ({key}) does not exist.'
