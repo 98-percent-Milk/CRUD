@@ -3,7 +3,7 @@ flashcard.py Beta version of flash card for quizinator app
 Author: Team 3
 Date: April 30th
 """
-
+import json
 class FlashCard:
     """ Beta Flash Card class for quizinator app """
     def __init__(self):
@@ -71,4 +71,24 @@ class FlashCard:
             user_input = input('Re-enter the term you want to remove ')
         quiz.pop(user_input)
         print('the flashcard', user_input ,' has been deleted')
-        return None
+        dict1={}
+        for i,j in quiz.items():
+            if i.isdigit() == False:
+                dict1[i] = j
+            else:
+                if int(i) < int(user_input):
+                    dict1[i] = j
+                else:
+                    i = int(i)
+                    i-=1
+                    i = str(i)
+                    dict1[i] = j
+                    j['id'] = i
+        return dict1
+
+    def save_to_json(self,dict1):
+        with open('data.json', 'w') as f:
+            json.dump(dict1,f,indent = 4)
+
+
+    
