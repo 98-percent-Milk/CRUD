@@ -114,7 +114,7 @@ class Quiz:
         definition = self._get_input(f"Enter definition for {term}: ")
         flashcard.create_flashcard(term, definition, new_id)
         self.quizinator[new_id] = flashcard.serialize()
-        
+    
     def save_quizinator(self):
         """ Save current flashcards into(overight) local storage
         
@@ -130,16 +130,33 @@ class Quiz:
         with open(self.path, 'w') as fp:
             json.dump(self.quizinator, fp, indent=4)
 
+    def edit_flashcard(self, key):
+        """ Allows you to edit existing flashcards """
+        # Check if the key exists in the database
+        if key not in [x[1] for x in self._flashcard]:
+            raise ValueError
+        
+        print(f"---Editing <{key}> flashcard---")
+        for card in self._flashcard:
+            if key == card[1]:
+                fc_id = card[0] # getting flashcard unique id
+                new_term = self._get_input('Please input new term: ')
+                new_definition = self._get_input('Please input new definition: ')
+                self.quizinator[fc_id]['term'] = new_term
+                self.quizinator[fc_id]['def'] = new_definition
+                break
+
 
     def view_flashcard(self):
-        """Prints all the flashcards with term then definition on the next line."""
-        card_counter = 1
+        """Prints all the flashcards with term the then definition on the next line."""
         for flashcard in self.quizinator:
-            if isinstance(flashcard, dict):
-                print(f'Term: {flashcard["term"]}\nDefinition:{flashcard["def"]}\n')
-                card_counter += 1
+            if flashcard != "id":
+                print(f'\nID: {self.quizinator[flashcard]["id"]}\nTerm: {self.quizinator[flashcard]["term"]}\nDefinition:{self.quizinator[flashcard]["def"]}')
+
 
 if __name__ == '__main__':
     quiz = Quiz()
-    quiz.add_flashcard()
+    # quiz.add_flashcard()
+    # quiz.save_quizinator()
+    quiz.edit_flashcard('html')
     quiz.save_quizinator()

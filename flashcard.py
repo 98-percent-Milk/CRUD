@@ -12,6 +12,7 @@ class FlashCard:
         self.definition = ''
         self.id = ''
 
+
     def create_flashcard(self, term:str, definition:str, unique_id:str) -> None:
         """ Create new flashcard from user input
 
@@ -36,6 +37,7 @@ class FlashCard:
         else:
             raise ValueError
 
+
     def serialize(self):
         return {
             'id': self.id,
@@ -51,15 +53,16 @@ class FlashCard:
         if str(key) in quiz.keys():
             for items in quiz:
                 if items == str(key):
-                    print(f'Current flashcard: {quiz[items]}')
-                    term = input('Please input new term: ')
+                    print(f'\nCurrent flashcard:\nTerm: {quiz[items]["term"]}\nDef: {quiz[items]["def"]}')
+                    term = input('\nPlease input new term: ')
                     definition = input('Please input new definition: ')
                     quiz[items]["term"] = term
                     quiz[items]["def"] = definition
-                    print(f'Updated flashcard: {quiz[items]}')
+                    print(f'\nUpdated flashcard:\nTerm: {quiz[items]["term"]}\nDef: {quiz[items]["def"]}')
                     # save to JSON
         else:
             return f'The flashcard with the given ID ({key}) does not exist.'
+
 
     def remove_flashcard(self,quiz_list):
         """ takes flashcard_id as input and deletes the corresponding flashcard"""
@@ -86,9 +89,8 @@ class FlashCard:
                     j['id'] = i
         return dict1
 
+
     def save_to_json(self,dict1):
         with open('data.json', 'w') as f:
             json.dump(dict1,f,indent = 4)
 
-
-    
