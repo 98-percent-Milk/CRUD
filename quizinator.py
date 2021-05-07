@@ -114,7 +114,7 @@ class Quiz:
         definition = self._get_input(f"Enter definition for {term}: ")
         flashcard.create_flashcard(term, definition, new_id)
         self.quizinator[new_id] = flashcard.serialize()
-    
+        
     def save_quizinator(self):
         """ Save current flashcards into(overight) local storage
         
@@ -129,6 +129,15 @@ class Quiz:
         """
         with open(self.path, 'w') as fp:
             json.dump(self.quizinator, fp, indent=4)
+
+
+    def view_flashcard(self):
+        """Prints all the flashcards with term then definition on the next line."""
+        card_counter = 1
+        for flashcard in self.quizinator:
+            if isinstance(flashcard, dict):
+                print(f'Term: {flashcard["term"]}\nDefinition:{flashcard["def"]}\n')
+                card_counter += 1
 
 if __name__ == '__main__':
     quiz = Quiz()

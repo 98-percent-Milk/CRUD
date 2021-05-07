@@ -42,7 +42,7 @@ class FlashCard:
             'term': self.term,
             'def': self.definition
         }
-
+    
     def edit_flashcard(self, key):
         """ Allows you to edit existing flashcards """
         quiz = Quiz()
@@ -55,3 +55,4 @@ class FlashCard:
                 #definition = new_definition
                 definition = input('Please input new definition: ')
                 items[key] = [term, definition]
+
