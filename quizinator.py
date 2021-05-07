@@ -109,7 +109,7 @@ class Quiz:
 
         while self._check_flashcard(term):
             term = self._get_input("Enter term for flashcard: ")
-
+        self._flashcard.append([new_id, term])
         definition = self._get_input(f"Enter definition for {term}: ")
         flashcard.create_flashcard(term, definition, new_id)
         self.quizinator[new_id] = flashcard.serialize()
@@ -142,6 +142,7 @@ class Quiz:
         None
         """
         # Check if the key exists in the database
+        print(self._flashcard)
         if key not in [x[1] for x in self._flashcard]:
             raise ValueError
         
@@ -171,7 +172,7 @@ class Quiz:
         for flashcard in self.quizinator:
             if flashcard != "id":
                 print(f'\nID: {self.quizinator[flashcard]["id"]}\n'
-                f'Term: {self.quizinator[flashcard]["term"]}\nDefinition:{self.quizinator[flashcard]["def"]}')
+                f'Term: {self.quizinator[flashcard]["term"]}\nDefinition: {self.quizinator[flashcard]["def"]}')
 
     def remove_flashcard(self) -> None:
         """ takes flashcard_id as input and deletes the coressponding flashcard
