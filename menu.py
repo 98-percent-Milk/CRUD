@@ -64,3 +64,18 @@ class Menu:
         print("\t3. Update flashcard")
         print("\t4. Delete flashcard")
         print("\t5. Exit\n")
+
+    def display_frame(self, phrase) -> None:
+        """ Display sentence/phrase/word in a nicer format
+
+        Parameter
+        -----------------
+        None
+
+        Return
+        ----------------
+        None
+        """
+        print('-' * 52)
+        print('|', '{text:^48}'.format(text=phrase), '|')
+        print('-' * 52)
