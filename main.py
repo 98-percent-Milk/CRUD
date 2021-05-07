@@ -17,6 +17,14 @@ def main():
             flashcard.edit_flashcard(quiz.quizinator, key)
             quiz.save_quizinator()
 
+        elif choice == 4:
+            print('here are your flashcards')
+            for i in quiz.quizinator.values():
+                print(i,end =" ")
+            print()
+            flashcard.remove_flashcard(quiz.quizinator)
+            quiz.save_quizinator()
+
         elif choice == 5:
             return False
 
