@@ -147,6 +147,13 @@ class Quiz:
                 break
 
 
+    def view_flashcard(self):
+        """Prints all the flashcards with term the then definition on the next line."""
+        for flashcard in self.quizinator:
+            if flashcard != "id":
+                print(f'Term: {self.quizinator[flashcard]["term"]}\nDefinition:{self.quizinator[flashcard]["def"]}')
+
+
 if __name__ == '__main__':
     quiz = Quiz()
     # quiz.add_flashcard()
