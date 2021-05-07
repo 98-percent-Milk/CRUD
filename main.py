@@ -27,8 +27,10 @@ def main():
             for i in quiz.quizinator.values():
                 print(i,end =" ")
             print()
-            flashcard.remove_flashcard(quiz.quizinator)
-            quiz.save_quizinator()
+
+            data = flashcard.remove_flashcard(quiz.quizinator)
+            flashcard.save_to_json(data)
+
 
         elif choice == 5:
             return False
