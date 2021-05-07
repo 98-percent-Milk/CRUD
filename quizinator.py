@@ -145,7 +145,7 @@ class Quiz:
         if key not in [x[1] for x in self._flashcard]:
             raise ValueError
         
-        print(f"---Editing <{key}> flashcard---")
+        print(f"\n---Editing <{key}> flashcard---")
         for card in self._flashcard:
             if key == card[1]:
                 fc_id = card[0] # getting flashcard unique id
@@ -170,7 +170,7 @@ class Quiz:
         """
         for flashcard in self.quizinator:
             if flashcard != "id":
-                print(f'\nID: {self.quizinator[flashcard]["id"]}\nTerm: {self.quizinator[flashcard]["term"]}\nDefinition:{self.quizinator[flashcard]["def"]}')
+                print(f'\nID: {self.quizinator[flashcard]["id"]}\nTerm: {self.quizinator[flashcard]["term"]}\nDefinition: {self.quizinator[flashcard]["def"]}')
 
     def remove_flashcard(self) -> None:
         """ takes flashcard_id as input and deletes the coressponding flashcard

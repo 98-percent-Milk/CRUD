@@ -18,7 +18,7 @@ def main() -> None:
             quiz.view_flashcard()
 
         elif choice == 3:
-            print('\nHere are your flahscards')
+            print('\nHere are your flashcards')
             quiz.view_flashcard() #replace with function to view all flashcards
             term = input('\nWhich flashcard would you like to update? (Please input the Term): ')
             quiz.edit_flashcard(term)
