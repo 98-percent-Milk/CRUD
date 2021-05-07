@@ -170,7 +170,8 @@ class Quiz:
         """
         for flashcard in self.quizinator:
             if flashcard != "id":
-                print(f'Term: {self.quizinator[flashcard]["term"]}\nDefinition:{self.quizinator[flashcard]["def"]}')
+                print(f'\nID: {self.quizinator[flashcard]["id"]}\n'
+                f'Term: {self.quizinator[flashcard]["term"]}\nDefinition:{self.quizinator[flashcard]["def"]}')
 
     def remove_flashcard(self) -> None:
         """ takes flashcard_id as input and deletes the coressponding flashcard
