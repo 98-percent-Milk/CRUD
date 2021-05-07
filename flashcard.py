@@ -1,5 +1,5 @@
 """
-falshcard.py Beta version of flash card for quizinator app
+flashcard.py Beta version of flash card for quizinator app
 Author: Team 3
 Date: April 30th
 """
@@ -43,31 +43,16 @@ class FlashCard:
             'def': self.definition
         }
     
-    def edit_flashcard(self, quiz_list, key):
+    def edit_flashcard(self, key):
         """ Allows you to edit existing flashcards """
-        quiz = quiz_list
+        quiz = Quiz()
+        #for every item in the list
+        for items in quiz.quizinator:
+            #if the term matches the search term
+            if items == key:
+                #term = new_term
+                term = input('Please input new term: ')
+                #definition = new_definition
+                definition = input('Please input new definition: ')
+                items[key] = [term, definition]
 
-        if str(key) in quiz.keys():
-            for items in quiz:
-                if items == str(key):
-                    print(f'Current flashcard: {quiz[items]}')
-                    term = input('Please input new term: ')
-                    definition = input('Please input new definition: ')
-                    quiz[items]["term"] = term
-                    quiz[items]["def"] = definition
-                    print(f'Updated flashcard: {quiz[items]}')
-                    # save to JSON
-        else:
-            print(f'The flashcard with the given ID ({key}) does not exist.')
-
-    def remove_flashcard(self,quiz_list):
-        """ takes flashcard_id as input and deletes the coressponding flashcard"""
-        quiz = quiz_list
-
-        user_input  = input('Enter the flashcard id you want to remove ')
-        while user_input not in quiz.keys():
-            print('There is no flashcard', user_input)
-            user_input = input('Re-enter the term you want to remove ')
-        quiz.pop(user_input)
-        print('the flashcard', user_input ,' has been deleted')
-        return None
