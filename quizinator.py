@@ -97,9 +97,8 @@ class Quiz:
         
         Parameter
         ---------------
-        prompt: None
+        None
         
-
         Return
         ---------------
         None
@@ -114,15 +113,15 @@ class Quiz:
         definition = self._get_input(f"Enter definition for {term}: ")
         flashcard.create_flashcard(term, definition, new_id)
         self.quizinator[new_id] = flashcard.serialize()
-    
+        self.save_quizinator()
+
     def save_quizinator(self):
         """ Save current flashcards into(overight) local storage
         
         Parameter
         ---------------
-        prompt: None
+        None
         
-
         Return
         ---------------
         None
@@ -130,8 +129,18 @@ class Quiz:
         with open(self.path, 'w') as fp:
             json.dump(self.quizinator, fp, indent=4)
 
-    def edit_flashcard(self, key):
-        """ Allows you to edit existing flashcards """
+    def edit_flashcard(self, key:str) -> None:
+        """ Allows you to edit existing flashcards 
+        
+        Parameter
+        ---------------
+        key: str
+            Flashcard term
+        
+        Return
+        ---------------
+        None
+        """
         # Check if the key exists in the database
         if key not in [x[1] for x in self._flashcard]:
             raise ValueError
@@ -145,18 +154,40 @@ class Quiz:
                 self.quizinator[fc_id]['term'] = new_term
                 self.quizinator[fc_id]['def'] = new_definition
                 break
+        self.save_quizinator()
 
 
-    def view_flashcard(self):
-        """Prints all the flashcards with term the then definition on the next line."""
+    def view_flashcard(self) -> None:
+        """Prints all the flashcards with term the then definition on the next line.
+        
+        Parameter
+        ---------------
+        None
+        
+        Return
+        ---------------
+        None
+        """
         for flashcard in self.quizinator:
             if flashcard != "id":
                 print(f'\nID: {self.quizinator[flashcard]["id"]}\nTerm: {self.quizinator[flashcard]["term"]}\nDefinition:{self.quizinator[flashcard]["def"]}')
 
-
-if __name__ == '__main__':
-    quiz = Quiz()
-    # quiz.add_flashcard()
-    # quiz.save_quizinator()
-    quiz.edit_flashcard('html')
-    quiz.save_quizinator()
+    def remove_flashcard(self) -> None:
+        """ takes flashcard_id as input and deletes the coressponding flashcard
+       
+        Parameter
+        ---------------
+        None
+        
+        Return
+        ---------------
+        None
+        """
+        user_input  = input('Enter the flashcard ID you want to remove: ')
+        while user_input not in self.quizinator.keys():
+            print('There is no flashcard', user_input)
+            user_input = input('Re-enter the term you want to remove: ')
+        self.quizinator.pop(user_input)
+        print('The flashcard', user_input ,' has been deleted')
+        self.quizinator['id'].append(user_input)
+        self.save_quizinator()

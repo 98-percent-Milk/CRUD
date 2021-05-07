@@ -1,10 +1,7 @@
 {
-    "id": [],
-    "1": {
-        "id": "1",
-        "term": "python",
-        "def": "main language"
-    },
+    "id": [
+        "1"
+    ],
     "2": {
         "id": "2",
         "term": "java",
