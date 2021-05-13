@@ -2,7 +2,7 @@
 import pytest
 import mock
 import builtins
-from ..main import main
+from main import main
 
 def test_display_menu():
     """ Unit test for displaying the main menu """

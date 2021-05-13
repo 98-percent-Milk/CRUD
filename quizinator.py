@@ -142,11 +142,11 @@ class Quiz:
         None
         """
         # Check if the key exists in the database
-        print(self._flashcard)
+        # print(self._flashcard)
         if key not in [x[1] for x in self._flashcard]:
-            raise ValueError
+            raise ValueError(f'The flashcard ({key}) does not exist.')
         
-        print(f"---Editing <{key}> flashcard---")
+        print(f"\n---Editing <{key}> flashcard---")
         for card in self._flashcard:
             if key == card[1]:
                 fc_id = card[0] # getting flashcard unique id
@@ -185,11 +185,11 @@ class Quiz:
         ---------------
         None
         """
-        user_input  = input('Enter the flashcard id you want to remove: ')
+        user_input  = input('Enter the flashcard ID you want to remove: ')
         while user_input not in self.quizinator.keys():
             print('There is no flashcard', user_input)
             user_input = input('Re-enter the term you want to remove: ')
         self.quizinator.pop(user_input)
-        print('the flashcard', user_input ,' has been deleted')
+        print('The flashcard', user_input ,'has been deleted')
         self.quizinator['id'].append(user_input)
         self.save_quizinator()

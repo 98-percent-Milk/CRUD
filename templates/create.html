@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block main %}
+
+<div class='container'>
+    <br>
+    <h1>Add New Flashcard</h1>
+    <div class="form-group">
+        <label for="Term">Term</label>
+        <input type="text" class="form-control" id="term_input" placeholder="Enter term name here" name="term">
+    </div>
+    <br>
+    <div class="form-group">
+        <label for="definition">Definition</label>
+        <textarea class="form-control" id="definition_input" rows="3" placeholder="Enter definition here" name="definition"></textarea>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-warning">Save</button>
+</div>
+
+
+{% endblock %}
