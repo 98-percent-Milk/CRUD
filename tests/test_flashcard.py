@@ -1,6 +1,9 @@
 """ Unit test for flashcard class """
 import pytest
-from ..flashcard import FlashCard
+import mock
+import builtins
+from flashcard import FlashCard
+from quizinator import Quiz
 
 @pytest.fixture(name='flashcard')
 def fixture_flashcard():
@@ -47,3 +50,10 @@ def test_serialization(flashcard):
         'term': 'python',
         'def': 'programming language'
     }
+
+
+
+
+# tests for removing
+def test_remove_fc(flashcard):
+    pass
