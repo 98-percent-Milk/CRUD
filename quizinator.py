@@ -193,3 +193,17 @@ class Quiz:
         print('The flashcard', user_input ,'has been deleted')
         self.quizinator['id'].append(user_input)
         self.save_quizinator()
+
+    def search_flashcard(self, term):
+        if term not in [x[1] for x in self._flashcard]:
+            raise ValueError
+        else:
+            for i in self._flashcard:
+                if term == i[1]:
+                    fc_id = i[0]
+                    print('term :',term)
+                    print('defination :',self.quizinator[fc_id]["def"])
+
+
+
+
