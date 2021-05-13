@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block main %}
+
 {% with messages = get_flashed_messages() %}
     {% if messages %}
         {% for msg in messages %}
@@ -7,6 +8,7 @@
         {% endfor %}
     {% endif %}
 {% endwith %}
+
 <div class='container'>
     <br>
     <div class="row show-grid">
