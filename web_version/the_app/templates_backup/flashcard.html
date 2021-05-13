@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}<h1>Individual Flashcard</h1>{% endblock %}
+
+{% block content %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p>{{msg}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <p><b>Term</b>: {{term}}</p>
+    </t><p><b>Definition</b>: {{definition}}</p>
+{% endblock %}
