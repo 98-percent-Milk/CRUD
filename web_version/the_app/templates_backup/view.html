@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title%}<h1>View all users</h1>{% endblock %}
+
+{% block content %}
+    {% for item in values %}
+        <p>Term: {{item.term}}, Definition: {{item.definition}}</p>
+    {% endfor %}
+{% endblock %}

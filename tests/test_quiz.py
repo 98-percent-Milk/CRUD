@@ -63,3 +63,8 @@ def test_generate_id(quiz):
     """ Unit test for generating unique id for flashcards """
     new_id = quiz.generate_id()
     assert new_id == '3'
+
+def test_search_fc(quiz):
+    """ Unit test for Value Error while searching existing flashcard in database """
+    with pytest.raises(ValueError):
+        quiz.search_flashcard('CSS')

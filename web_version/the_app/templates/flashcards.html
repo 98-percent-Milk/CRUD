@@ -18,12 +18,15 @@
         <tbody>
             {% for card in flashcards %}    <!--accessing list of all flashcards in database-->
             <tr>
-                <td>{{ card['term'] }}</td>   <!--grabbing specific term and def-->
-                <td>{{ card['def'] }}</td>
-                <td>
-                    <button type="submit" class="btn btn-warning">Edit</button>
-                </td>
+                <form action='edit/{{card.id}}' method='POST'>
+                    <td>{{card.term}}</td>   <!--grabbing specific term and def-->
+                    <td>{{card.definition}}</td>
+                    <td>
+                        <button type="submit" class="btn btn-warning" formmethod="POST" id='fc_{{card.id}}'>Edit</button>
+                    </td>
+                </form>
             </tr>
+            {% endfor %}
         </tbody>
     </table>
 </div>

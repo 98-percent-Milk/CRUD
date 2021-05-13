@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block main %}
+<div class='container'>
+    <br>
+    <h1>Practice</h1>
+    <p>Click to
+    <button type="submit" class="btn btn-outline-dark" onclick="randomTerm({{ flashcard|safe }})">Start</button>
+    </p>
+
+    <div class="card my-2">
+        <div class="card-body">
+            <div class="form-group">
+                <label for="question">What is? {{ card.term if card }} </label>
+                <textarea class="form-control" id="def_input" rows="3" placeholder="Answer here" name="definition"></textarea>
+                <br>
+                <button type="submit" class="btn btn-outline-dark">Submit</button>  <!--have error pop up if incorrect value-->
+            </div>
+        </div>
+        <button type="submit" class="btn btn-outline-dark">Next</button>
+    </div>
+</div>
+
+<script>
+    function randomTerm(flashcard) {
+        pass;
+        // let term = fc[getRandomInt({{ flashcards|tojson|length}})];
+    }
+</script>
+{% endblock %}
