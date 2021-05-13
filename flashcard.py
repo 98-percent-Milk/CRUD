@@ -3,7 +3,11 @@ flashcard.py Beta version of flash card for quizinator app
 Author: Team 3
 Date: April 30th
 """
+<<<<<<< HEAD
 import json
+=======
+
+>>>>>>> main
 class FlashCard:
     """ Beta Flash Card class for quizinator app """
     def __init__(self):
@@ -37,7 +41,10 @@ class FlashCard:
         else:
             raise ValueError
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
     def serialize(self):
         return {
             'id': self.id,
