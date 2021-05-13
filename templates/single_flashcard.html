@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block main %}
+<div class='container'>
+    <div class="row show-grid">
+        <h1 class="page-header">Editing Flashcard</h1>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <h4>ID: {{ card['id'] }}</h4>   <!--specific id/term/def-->
+            <h4>Term: {{ card['term'] }}</h4>
+            <h4>Definition: {{ card['def'] }}</h4>
+        </li>
+    </ul>
+
+    <div class="card my-2">
+        <div class="card-body">
+            <div class="form-group">
+                <label for="term">New Term</label>
+                <input type="text" name="term" class="form-control" id="term_input" value="{{ card['term'] }}">     <!--specific card term-->
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="definition">New Definition</label>
+                <textarea class="form-control" id="def_input" rows="3" placeholder="Enter new definition" name="definition">{{ card['def'] }}</textarea>    <!--specific card def-->
+            </div>
+            <br>
+            <button type="submit" class="btn btn-warning">Save</button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

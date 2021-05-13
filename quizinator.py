@@ -142,7 +142,7 @@ class Quiz:
         None
         """
         # Check if the key exists in the database
-        print(self._flashcard)
+        # print(self._flashcard)
         if key not in [x[1] for x in self._flashcard]:
             raise ValueError(f'The flashcard ({key}) does not exist.')
         
@@ -190,6 +190,6 @@ class Quiz:
             print('There is no flashcard', user_input)
             user_input = input('Re-enter the term you want to remove: ')
         self.quizinator.pop(user_input)
-        print('The flashcard', user_input ,' has been deleted')
+        print('The flashcard', user_input ,'has been deleted')
         self.quizinator['id'].append(user_input)
         self.save_quizinator()

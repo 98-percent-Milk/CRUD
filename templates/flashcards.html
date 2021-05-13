@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block main %}
+
+<div class='container'>
+    <br>
+    <h1>Your Flashcards</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Term</th>
+                <th>Definition</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for card in flashcards %}    <!--accessing list of all flashcards in database-->
+            <tr>
+                <td>{{ card['term'] }}</td>   <!--grabbing specific term and def-->
+                <td>{{ card['def'] }}</td>
+                <td>
+                    <button type="submit" class="btn btn-warning">Edit</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
