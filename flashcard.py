@@ -4,8 +4,6 @@ Author: Team 3
 Date: April 30th
 """
 
-from quizinator import Quiz
-
 class FlashCard:
     """ Beta Flash Card class for quizinator app """
     def __init__(self):
