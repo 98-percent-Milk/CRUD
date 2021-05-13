@@ -48,7 +48,7 @@ class Menu:
 
     @property
     def display_menu(self) -> None:
-        """ Display main menu of the quizinator flash card app
+        """ Display main menu of the quizinator flashcard app
 
         Parameter
         -----------------
@@ -58,9 +58,24 @@ class Menu:
         ----------------
         None
         """
-        print('\n{text:-^50}\n'.format(text='Quizinator Flash Card App'))
-        print("\t1. Practice")
-        print("\t2. View existing flash cards")
-        print("\t3. Update flash card")
-        print("\t4. Delete flash card")
+        print('\n{text:-^50}\n'.format(text='Quizinator FlashCard App'))
+        print("\t1. Add flashcard")
+        print("\t2. View existing flashcards")
+        print("\t3. Update flashcard")
+        print("\t4. Delete flashcard")
         print("\t5. Exit\n")
+
+    def display_frame(self, phrase) -> None:
+        """ Display sentence/phrase/word in a nicer format
+
+        Parameter
+        -----------------
+        None
+
+        Return
+        ----------------
+        None
+        """
+        print('-' * 52)
+        print('|', '{text:^48}'.format(text=phrase), '|')
+        print('-' * 52)
