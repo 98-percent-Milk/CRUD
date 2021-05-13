@@ -38,25 +38,9 @@ class FlashCard:
         else:
             raise ValueError
 
-<<<<<<< HEAD
     def serialize(self):
         return {
             'id': self.id,
             'term': self.term,
             'def': self.definition
         }
-=======
-
-    def edit_flashcard(self, key):
-        """ Allows you to edit existing flashcards """
-        quiz = Quiz()
-        #for every item in the list
-        for items in quiz.quizinator:
-            #if the term matches the search term
-            if items == key:
-                #term = new_term
-                term = input('Please input new term: ')
-                #definition = new_definition
-                definition = input('Please input new definition: ')
-                items[key] = [term, definition]
->>>>>>> agnes
