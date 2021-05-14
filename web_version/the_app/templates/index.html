@@ -1,19 +1,35 @@
 {% extends "base.html" %}
 {% block main %}
 
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-        {% for msg in messages %}
-            <p>{{msg}}</p>
-        {% endfor %}
-    {% endif %}
-{% endwith %}
+
+
 <div class='container'>
     <br>
-    <h1>Quizinator</h1>
-    <p>
-        Write an entry/introduction to app or smthg here
-    </p>
+    <h1>Get Quizzing!</h1>
+    <br>
+    <div class="card">
+        <div class="card-body">
+         {% with messages = get_flashed_messages() %}
+             {% if messages %}
+                 {% for msg in messages %}
+                     <p><b>{{msg}}</b></p>
+                 {% endfor %}
+             {% endif %}
+         {% endwith %}
+        </div>
+    
+        <div class="card-body">
+        <p>
+            Welcome to the Quizinator
+            <br>Ready to improve your grades? Memorize important terms? Expand your memory?
+            <br>
+            <br>
+            Look no further! Add as many flashcards as you want and enjoy!
+        </p>
+        </div>
+    </div>
+
+
 </div>
 
 {% endblock %}

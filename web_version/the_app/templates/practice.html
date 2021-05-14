@@ -1,24 +1,25 @@
 {% extends "base.html" %}
 {% block main %}
+
 <div class='container'>
     <br>
-    <h1>Practice</h1>
-    <h3>Values: {{flashcards}}</h3>
-    <h3>Def: {{fc_def}}</h3>
-    <p>Click to
-    <button type="submit" class="btn btn-outline-dark" onclick='randomTerm(), this.disabled = true;'>Start</button>
-    </p>
-
+    <h1>Let's Start Practicing!</h1>
+    <br>
+    <div class="form-group m-3">
+        <p>Click to
+            <button type="submit" class="btn btn-outline-success btn-sm" onclick='randomTerm(), this.disabled = true;'>Start</button>
+        </p>
+    </div>
+        
     <div class="card my-2">
         <div class="card-body">
             <div class="form-group">
-                <label for="question">What is <span id='term'>?</span></label>
-                <textarea class="form-control" id="def_input" rows="3" placeholder="Answer here" name="definition"></textarea>
-                <br>
-                <button type="submit" class="btn btn-outline-dark" onclick="check_answer()">Submit</button>  <!--have error pop up if incorrect value-->
+                <label for="question">What is <b><span id='term'></b>?</span></label>
+                <textarea class="form-control mt-2" id="def_input" rows="3" placeholder="Answer here" name="definition"></textarea>
+                <button type="submit" class="btn btn-outline-dark mt-2" onclick="check_answer()">Submit</button>  <!--have error pop up if incorrect value-->
             </div>
         </div>
-        <button type="submit" class="btn btn-outline-dark" onclick="next_card()">Next</button>
+        <button type="submit" class="btn btn-outline-primary mt-3" onclick="next_card()">Next</button>
     </div>
 </div>
 
@@ -31,7 +32,10 @@
 
         let card = Math.floor(Math.random() * flashcards.length);
         let span = document.getElementById('term');
-        span.innerText = flashcards[card] + '?';
+        span.innerText = flashcards[card] + ' ';
+
+        let hide = document.getElementById("test");
+        hide.className = 'invisible';
     }
 
     function next_card() {
@@ -52,19 +56,21 @@
         })
         
         let card = Math.floor(Math.random() * flashcards.length);
-        span.innerText = flashcards[card] + '?';
+        span.innerText = flashcards[card] + ' ';
         document.querySelector('textarea').value = '';
     }
 
     function check_answer() {
-        let term = document.getElementById('term').innerText.replace('?','');
+        let term = document.getElementById('term').innerText.replace(' ','');
         let answer = document.querySelector('textarea').value.replaceAll(' ', '');
+        let txtarea = document.getElementById('def_input')
         console.log(`${fc_def[flashcards.indexOf(term)]}:${answer}`);
-        if (fc_def[flashcards.indexOf(term)] == answer) {
-            alert('CORRECT');
+        if (fc_def[flashcards.indexOf(term)].toUpperCase() == answer.toUpperCase()) {
+            txtarea.style="border: solid 4px #4AAD52;";
         } else {
-            alert('INCORRECT')
+            txtarea.style="border: solid 4px #FE4134;";
         }
     }
 </script>
+
 {% endblock %}

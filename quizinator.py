@@ -201,8 +201,8 @@ class Quiz:
             for i in self._flashcard:
                 if term == i[1]:
                     fc_id = i[0]
-                    print('term :',term)
-                    print('defination :',self.quizinator[fc_id]["def"])
+                    print('Term:',term)
+                    print('Defination:',self.quizinator[fc_id]["def"])
 
 
 

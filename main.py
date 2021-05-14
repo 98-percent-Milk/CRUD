@@ -31,6 +31,15 @@ def main() -> None:
             quiz.remove_flashcard()
 
         elif choice == 5:
+            menu.display_frame('Searching for flashcard')
+            terms = [x[1] for x in quiz._flashcard]
+            print('\nHere are your terms: ')
+            for i in terms: # may be remove this idk
+                print(i, end=", ")
+            term =  input('\n\nWhich flashcard would you like to search? (Please input the Term): ')
+            quiz.search_flashcard(term)
+
+        elif choice == 6:
             return False
 
 if __name__  == '__main__':
