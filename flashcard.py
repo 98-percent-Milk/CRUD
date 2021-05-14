@@ -37,7 +37,6 @@ class FlashCard:
         else:
             raise ValueError
 
-
     def serialize(self):
         return {
             'id': self.id,
