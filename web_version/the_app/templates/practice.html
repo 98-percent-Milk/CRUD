@@ -4,6 +4,7 @@
 <div class='container'>
     <br>
     <h1>Let's Start Practicing!</h1>
+    <br>
     <div class="form-group m-3">
         <p>Click to
             <button type="submit" class="btn btn-outline-success btn-sm" onclick='randomTerm(), this.disabled = true;'>Start</button>
@@ -32,6 +33,9 @@
         let card = Math.floor(Math.random() * flashcards.length);
         let span = document.getElementById('term');
         span.innerText = flashcards[card] + ' ';
+
+        let hide = document.getElementById("test");
+        hide.className = 'invisible';
     }
 
     function next_card() {
@@ -59,11 +63,12 @@
     function check_answer() {
         let term = document.getElementById('term').innerText.replace(' ','');
         let answer = document.querySelector('textarea').value.replaceAll(' ', '');
+        let txtarea = document.getElementById('def_input')
         console.log(`${fc_def[flashcards.indexOf(term)]}:${answer}`);
         if (fc_def[flashcards.indexOf(term)].toUpperCase() == answer.toUpperCase()) {
-            alert('CORRECT');
+            txtarea.style="border: solid 4px #4AAD52;";
         } else {
-            alert('INCORRECT')
+            txtarea.style="border: solid 4px #FE4134;";
         }
     }
 </script>
