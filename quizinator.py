@@ -205,7 +205,7 @@ class Quiz:
 
         
 
-        while True:
+        while len(list_of_IDS) != 0:
             user_study_choice = input("Would you like to see the terms first if No the definition will be displayed first. Y/N\n")
             random_card = random.choice(list_of_IDS)
             """makes sure that when studying there are no repeated cards"""
@@ -213,7 +213,10 @@ class Quiz:
             test_def = self.quizinator[random_card]['def']
 
             # adding current flash card into studied cards
-            studied_cards.append(list_of_IDS.pop(int(random_card) - 1))
+            print("RANDOM CARD: ",random_card)
+            print("LIST_OF_IDS: ", list_of_IDS)
+            studied_cards.append(random_card)
+            list_of_IDS.remove(random_card)
             """if the user enters 'Y/y' the term will be printed first"""
             if (user_study_choice in ['y', 'Y']):
                 print(f"Term:\n{test_term}\n")
