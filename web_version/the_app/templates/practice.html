@@ -45,7 +45,11 @@
             document.querySelector('label').innerText = "Good job! No cards left";
             return;
         }
-
+        if (check_answer()) {
+            //pass;
+        } else {
+            return;
+        }
         let term = span.innerText.replace('?','');
         let def = fc_def[flashcards.indexOf(term)];
         flashcards = flashcards.filter(function(element) {
@@ -67,8 +71,10 @@
         console.log(`${fc_def[flashcards.indexOf(term)]}:${answer}`);
         if (fc_def[flashcards.indexOf(term)].toUpperCase() == answer.toUpperCase()) {
             txtarea.style="border: solid 4px #4AAD52;";
+            return true;
         } else {
             txtarea.style="border: solid 4px #FE4134;";
+            return false;
         }
     }
 </script>
