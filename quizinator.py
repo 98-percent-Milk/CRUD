@@ -193,15 +193,12 @@ class Quiz:
         self.quizinator['id'].append(user_input)
         self.save_quizinator()
 
-    def search_flashcard(self, term):
-        if term not in [x[1] for x in self._flashcard]:
-            raise ValueError
-        else:
-            for i in self._flashcard:
-                if term == i[1]:
-                    fc_id = i[0]
-                    print('Term:',term)
-                    print('Defination:',self.quizinator[fc_id]["def"])
+    def practice(self):
+        self.list_of_Ids = self.quizinator["id"]
+        if len(self.list_of_Ids) == 0:
+            print("There are no flashcards in the current study set. Please create some to practice.")
+        studied_cards = []
+        """number of items in the dictionary"""
 
 
         random_card = random.choice(self.list_of_Ids)
