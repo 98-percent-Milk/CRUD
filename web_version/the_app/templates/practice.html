@@ -4,27 +4,69 @@
 <div class='container'>
     <br>
     <h1>Practice</h1>
-    <p>Click to
-    <button type="submit" class="btn btn-outline-dark" onclick="randomTerm({{ flashcard|safe }})">Start</button>
-    </p>
-
+    <h3>Values: {{flashcards}}</h3>
+    <h3>Def: {{fc_def}}</h3>
+    <div class="form-group m-3">
+        <p>Click to
+            <button type="submit" class="btn btn-outline-success" onclick='randomTerm(), this.disabled = true;'>Start</button>
+        </p>
+    </div>
+        
     <div class="card my-2">
         <div class="card-body">
             <div class="form-group">
-                <label for="question">What is? {{ card.term if card }} </label>
-                <textarea class="form-control" id="def_input" rows="3" placeholder="Answer here" name="definition"></textarea>
-                <br>
-                <button type="submit" class="btn btn-outline-dark">Submit</button>  <!--have error pop up if incorrect value-->
+                <label for="question">What is <b><span id='term'></b>?</span></label>
+                <textarea class="form-control mt-2" id="def_input" rows="3" placeholder="Answer here" name="definition"></textarea>
+                <button type="submit" class="btn btn-outline-dark mt-2" onclick="check_answer()">Submit</button>  <!--have error pop up if incorrect value-->
             </div>
         </div>
-        <button type="submit" class="btn btn-outline-dark">Next</button>
+        <button type="submit" class="btn btn-outline-primary mt-3" onclick="next_card()">Next</button>
     </div>
 </div>
 
-<script>
-    function randomTerm(flashcard) {
-        pass;
-        // let term = fc[getRandomInt({{ flashcards|tojson|length}})];
+<script type='text/javascript'>
+    let flashcards = "{{flashcards|safe}}";
+    let fc_def = "{{fc_def|safe}}";
+    function randomTerm() {
+        flashcards = flashcards.slice(1, flashcards.length - 1).replaceAll(/[' ]/g, '').split(',')
+        fc_def = fc_def.slice(1, fc_def.length - 1).replaceAll(/[' ]/g, '').split(',')
+
+        let card = Math.floor(Math.random() * flashcards.length);
+        let span = document.getElementById('term');
+        span.innerText = flashcards[card] + ' ';
+    }
+
+    function next_card() {
+        let span = document.getElementById('term');
+        if (flashcards.length === 1) {
+            span.innerText = '';
+            document.querySelector('label').innerText = "Good job! No cards left";
+            return;
+        }
+
+        let term = span.innerText.replace('?','');
+        let def = fc_def[flashcards.indexOf(term)];
+        flashcards = flashcards.filter(function(element) {
+            return element != term;
+        });
+        fc_def = fc_def.filter(function(element) {
+            return element != def;
+        })
+        
+        let card = Math.floor(Math.random() * flashcards.length);
+        span.innerText = flashcards[card] + ' ';
+        document.querySelector('textarea').value = '';
+    }
+
+    function check_answer() {
+        let term = document.getElementById('term').innerText.replace(' ','');
+        let answer = document.querySelector('textarea').value.replaceAll(' ', '');
+        console.log(`${fc_def[flashcards.indexOf(term)]}:${answer}`);
+        if (fc_def[flashcards.indexOf(term)] == answer) {
+            alert('CORRECT');
+        } else {
+            alert('INCORRECT')
+        }
     }
 </script>
 

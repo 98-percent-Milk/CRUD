@@ -85,4 +85,8 @@ def edit(fc_id:int):
 
 @fc.route('/practice', methods=['GET', 'POST'])
 def practice():
-    return render_template('practice.html', flashcards = flash_card.query.with_entities(flash_card.term))
+    fc_terms = flash_card.query.with_entities(flash_card.term).all()
+    fc_definition = flash_card.query.with_entities(flash_card.definition).all()
+    terms = [x[0] for x in fc_terms]
+    definition = [x[0] for x in fc_definition]
+    return render_template('practice.html', flashcards = terms, fc_def=definition)
