@@ -1,8 +1,15 @@
 {
-    "id": [],
+    "id": [
+        "1", "2"
+    ],
     "1": {
         "id": "1",
         "term": "python",
-        "def": "main language"
+        "def": "An interpreted high-level general-purpose programming language"
+    },
+    "2": {
+        "id": "2",
+        "term": "html/css",
+        "def": "A programming language used for web interfaces"
     }
 }

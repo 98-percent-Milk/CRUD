@@ -38,8 +38,13 @@ def main() -> None:
                 print(i, end=", ")
             term =  input('\n\nWhich flashcard would you like to search? (Please input the Term): ')
             quiz.search_flashcard(term)
-
+            
         elif choice == 6:
+            menu.display_frame('Practice')
+            quiz.practice()
+            print()
+            
+        elif choice == 7:
             return False
 
 if __name__  == '__main__':

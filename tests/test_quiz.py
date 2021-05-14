@@ -68,3 +68,7 @@ def test_search_fc(quiz):
     """ Unit test for Value Error while searching existing flashcard in database """
     with pytest.raises(ValueError):
         quiz.search_flashcard('CSS')
+        
+def test_practice_empty_input_fc(quiz):
+    """checks that the correct value is returned when an empty list is given"""
+    assert quiz.practice() == "There are no flashcards in the current study set. Please create some to practice."
