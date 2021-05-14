@@ -1,8 +1,15 @@
 {
-    "id": [],
+    "id": [
+        "1", "2"
+    ],
     "1": {
         "id": "1",
         "term": "python",
-        "def": "main language"
+        "def": "Main language"
+    },
+    "2": {
+        "id": "2",
+        "term": "html/css",
+        "def": "web interface"
     }
 }

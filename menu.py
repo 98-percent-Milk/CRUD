@@ -36,7 +36,7 @@ class Menu:
         while type(choice) != int:
             try:
                 choice = int(input("What would like to do: "))
-                if choice > 5 or choice < 1:
+                if choice > 7 or choice < 1:
                     print(f"\tSorry {choice} is not a valid menu option. Try again")
                     choice = ''
                     self.display_menu
@@ -63,7 +63,8 @@ class Menu:
         print("\t2. View existing flashcards")
         print("\t3. Update flashcard")
         print("\t4. Delete flashcard")
-        print("\t5. Exit\n")
+        print("\t6. Practice flashcard")
+        print("\t7. Exit\n")
 
     def display_frame(self, phrase) -> None:
         """ Display sentence/phrase/word in a nicer format

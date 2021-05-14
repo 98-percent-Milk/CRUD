@@ -29,8 +29,12 @@ def main() -> None:
             quiz.view_flashcard()
             print()
             quiz.remove_flashcard()
-
-        elif choice == 5:
+            
+        elif choice == 6:
+            menu.display_frame('Practice')
+            quiz.practice()
+            print()
+        elif choice == 7:
             return False
 
 if __name__  == '__main__':

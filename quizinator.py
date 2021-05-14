@@ -5,6 +5,7 @@
 import json
 from flashcard import FlashCard
 from os import path
+import random
 
 class Quiz:
     """ Beta version of the Quiz flash card app """
@@ -142,11 +143,10 @@ class Quiz:
         None
         """
         # Check if the key exists in the database
-        # print(self._flashcard)
         if key not in [x[1] for x in self._flashcard]:
-            raise ValueError(f'The flashcard ({key}) does not exist.')
+            raise ValueError
         
-        print(f"\n---Editing <{key}> flashcard---")
+        print(f"---Editing <{key}> flashcard---")
         for card in self._flashcard:
             if key == card[1]:
                 fc_id = card[0] # getting flashcard unique id
@@ -171,8 +171,7 @@ class Quiz:
         """
         for flashcard in self.quizinator:
             if flashcard != "id":
-                print(f'\nID: {self.quizinator[flashcard]["id"]}\n'
-                f'Term: {self.quizinator[flashcard]["term"]}\nDefinition: {self.quizinator[flashcard]["def"]}')
+                print(f'Term: {self.quizinator[flashcard]["term"]}\nDefinition:{self.quizinator[flashcard]["def"]}')
 
     def remove_flashcard(self) -> None:
         """ takes flashcard_id as input and deletes the coressponding flashcard
@@ -185,25 +184,70 @@ class Quiz:
         ---------------
         None
         """
-        user_input  = input('Enter the flashcard ID you want to remove: ')
+        user_input  = input('Enter the flashcard id you want to remove: ')
         while user_input not in self.quizinator.keys():
             print('There is no flashcard', user_input)
             user_input = input('Re-enter the term you want to remove: ')
         self.quizinator.pop(user_input)
-        print('The flashcard', user_input ,'has been deleted')
+        print('the flashcard', user_input ,' has been deleted')
         self.quizinator['id'].append(user_input)
         self.save_quizinator()
 
-    def search_flashcard(self, term):
-        if term not in [x[1] for x in self._flashcard]:
-            raise ValueError
-        else:
-            for i in self._flashcard:
-                if term == i[1]:
-                    fc_id = i[0]
-                    print('term :',term)
-                    print('defination :',self.quizinator[fc_id]["def"])
+    def practice(self):
+        self.list_of_Ids = self.quizinator["id"]
+        if len(self.list_of_Ids) == 0:
+            print("There are no flashcards in the current study set. Please create some to practice.")
+        studied_cards = []
+        """number of items in the dictionary"""
 
 
+        random_card = random.choice(self.list_of_Ids)
+        
+        
+        user_study_choice = input("Would you like to see the terms first if No the definition will be displayed first. Y/N\n")
+        """makes sure that when studying there are no repeated cards"""
+
+        while len(studied_cards) != len(self.quizinator["id"]):
+
+            """if the user enters 'Y/y' the term will be printed first"""
+            if (user_study_choice == 'Y') or (user_study_choice == 'y'):
+                print(f"Term:\n{self.quizinator[str(random_card)]['term']}\n")
+                self.list_of_Ids.pop(self.list_of_Ids.index(random_card))
+                flipcard = input("press Enter to see the other side of the card")
+
+                """prints the rest of the flashcard when the user presses 'Enter'"""
+                while flipcard != "":
+                    flipcard= input("press Enter to proceed")
+                if flipcard == "":
+                    print(f"Term:\n\t{self.quizinator[str(random_card)]['term']}\n")
+                    print()
+                    print(f"Definition:\n\t{self.quizinator[str(random_card)]['def']}\n")
+            # if the user enters N/n the definition will be printed first
+            elif (user_study_choice == 'N') or (user_study_choice == 'n'):
+                print(f"Definition:\n\t{self.quizinator[str(random_card)]['def']}\n")
+
+                """prints the rest of the flashcard when the user presses 'Enter'"""
+                while flipcard != "":
+                    flipcard= input("press Enter to proceed")
+                if flipcard == "":
+                    print(f"Term:\n{self.quizinator[str(random_card)]['term']}\n")
+                    print()
+                    print(f"Definition:\n{self.quizinator[str(random_card)]['def']}\n")
+            studied_cards.append(random_card)
+            """options to view the next card or previous"""
+            User_option = input("Select an option: N(ext), B(ack), E(xit)")
+            if (User_option == 'n') or (User_option == "N"):
+                    continue
+            elif (User_option == 'b') or (User_option == "B"):
+                if len(studied_cards) == 0:
+                    print("There is no previous card to study")
+                    continue
+                else:
+                    pass
+            elif (User_option == 'E') or (User_option == 'e'):
+                break
+            
+            else:
+                raise ValueError("Please input a valid option argument.")
 
 
