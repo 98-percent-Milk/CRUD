@@ -30,6 +30,9 @@ def main() -> None:
             print()
             quiz.remove_flashcard()
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> db0b89af6895ee486b5b7029cebb5d167e22476f
 
         elif choice == 5:
             menu.display_frame('Searching for flashcard')
@@ -39,16 +42,23 @@ def main() -> None:
                 print(i, end=", ")
             term =  input('\n\nWhich flashcard would you like to search? (Please input the Term): ')
             quiz.search_flashcard(term)
+<<<<<<< HEAD
 
         elif choice == 6:
 =======
+=======
+>>>>>>> db0b89af6895ee486b5b7029cebb5d167e22476f
             
         elif choice == 6:
             menu.display_frame('Practice')
             quiz.practice()
             print()
+            
         elif choice == 7:
+<<<<<<< HEAD
 >>>>>>> c9d8f84eb6729381574a87cd64f56214e0ce1802
+=======
+>>>>>>> db0b89af6895ee486b5b7029cebb5d167e22476f
             return False
 
 if __name__  == '__main__':
