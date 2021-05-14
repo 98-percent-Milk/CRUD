@@ -4,6 +4,7 @@
 <div class='container'>
     <br>
     <h1>Let's Start Practicing!</h1>
+    <br>
     <h3>Values: {{flashcards}}</h3>
     <h3>Def: {{fc_def}}</h3>
     <div class="form-group m-3">
@@ -62,7 +63,7 @@
         let term = document.getElementById('term').innerText.replace(' ','');
         let answer = document.querySelector('textarea').value.replaceAll(' ', '');
         console.log(`${fc_def[flashcards.indexOf(term)]}:${answer}`);
-        if (fc_def[flashcards.indexOf(term)] == answer) {
+        if (fc_def[flashcards.indexOf(term)].toUpperCase() == answer.toUpperCase()) {
             alert('CORRECT');
         } else {
             alert('INCORRECT')
