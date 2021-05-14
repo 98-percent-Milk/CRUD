@@ -227,13 +227,15 @@ class Quiz:
                 print(f"Definition:\n\t{self.quizinator[str(random_card)]['def']}\n")
 
                 """prints the rest of the flashcard when the user presses 'Enter'"""
+                flipcard = input("press Enter to see the other side of the card")
                 while flipcard != "":
                     flipcard= input("press Enter to proceed")
                 if flipcard == "":
-                    print(f"Term:\n{self.quizinator[str(random_card)]['term']}\n")
+                    print(f"Term:\n\t{self.quizinator[str(random_card)]['term']}\n")
                     print()
-                    print(f"Definition:\n{self.quizinator[str(random_card)]['def']}\n")
+                    print(f"Definition:\n\t{self.quizinator[str(random_card)]['def']}\n")
             studied_cards.append(random_card)
+            
             """options to view the next card or previous"""
             User_option = input("Select an option: N(ext), B(ack), E(xit)")
             if (User_option == 'n') or (User_option == "N"):
