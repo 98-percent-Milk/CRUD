@@ -1,25 +1,25 @@
-- atomicwrites     1.4.0
-- attrs            21.2.0
-- click            8.0.0
-- colorama         0.4.4
-- coverage         5.5
-- flask            2.0.0
-- Flask-Login      0.5.0
-- Flask-SQLAlchemy 2.5.1
-- greenlet         1.1.0
-- iniconfig        1.1.1
-- itsdangerous     2.0.0
-- Jinja2           3.0.0
-- MarkupSafe       2.0.0
-- mock             4.0.3
-- packaging        20.9
-- pip              21.1.1
-- pluggy           0.13.1
-- py               1.10.0
-- pyparsing        2.4.7
-- pytest           6.2.4
-- pytest-cov       2.11.1
-- setuptools       56.2.0
-- SQLAlchemy       1.4.15
-- toml             0.10.2
-- Werkzeug         2.0.0
+atomicwrites
+attrs
+click
+colorama
+coverage
+Flask
+Flask-Login
+Flask-SQLAlchemy
+greenlet
+iniconfig
+itsdangerous
+Jinja2
+MarkupSafe
+mock
+packaging
+pip
+pluggy
+py
+pyparsing
+pytest
+pytest-cov
+setuptools
+SQLAlchemy
+toml
+Werkzeug
