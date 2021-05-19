@@ -203,8 +203,6 @@ class Quiz:
         """number of items in the dictionary"""
 
 
-        
-
         while len(list_of_IDS) != 0:
             user_study_choice = input("Would you like to see the terms first if No the definition will be displayed first. Y/N\n")
             random_card = random.choice(list_of_IDS)
