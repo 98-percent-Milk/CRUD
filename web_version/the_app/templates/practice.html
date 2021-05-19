@@ -16,7 +16,9 @@
             <div class="form-group">
                 <label for="question">What is <b><span id='term'></b>?</span></label>
                 <textarea class="form-control mt-2" id="def_input" rows="3" placeholder="Answer here" name="definition"></textarea>
-                <button type="submit" class="btn btn-outline-dark mt-2" onclick="check_answer()">Submit</button>  <!--have error pop up if incorrect value-->
+                <textarea class="form-control mt-2" id="hint" rows="1" placeholder="Hint" name="hint" style='display: none;'></textarea>
+                <button type="submit" class="btn btn-outline-dark mt-2" onclick="check_answer()">Submit</button>
+                <button type="submit" class="btn btn-outline-dark mt-2" onclick='show_hint()'>Hint</button>
             </div>
         </div>
         <button type="submit" class="btn btn-outline-primary mt-3" onclick="next_card()">Next</button>
@@ -27,15 +29,12 @@
     let flashcards = "{{flashcards|safe}}";
     let fc_def = "{{fc_def|safe}}";
     function randomTerm() {
-        flashcards = flashcards.slice(1, flashcards.length - 1).replaceAll(/[' ]/g, '').split(',')
-        fc_def = fc_def.slice(1, fc_def.length - 1).replaceAll(/[' ]/g, '').split(',')
+        flashcards = flashcards.slice(1, flashcards.length - 1).replaceAll("'", '').replaceAll(", ", ',').split(',');
+        fc_def = fc_def.slice(1, fc_def.length - 1).replaceAll("'", '').replaceAll(", ", ',').split(',');
 
         let card = Math.floor(Math.random() * flashcards.length);
         let span = document.getElementById('term');
         span.innerText = flashcards[card] + ' ';
-
-        let hide = document.getElementById("test");
-        hide.className = 'invisible';
     }
 
     function next_card() {
@@ -43,32 +42,31 @@
         if (flashcards.length === 1) {
             span.innerText = '';
             document.querySelector('label').innerText = "Good job! No cards left";
+            reverse();
             return;
         }
         if (check_answer()) {
-            //pass;
+            //pass
         } else {
             return;
         }
-        let term = span.innerText.replace('?','');
+        let term = span.innerText.replace(' ','');
         let def = fc_def[flashcards.indexOf(term)];
         flashcards = flashcards.filter(function(element) {
             return element != term;
         });
         fc_def = fc_def.filter(function(element) {
             return element != def;
-        })
-        
+        });
         let card = Math.floor(Math.random() * flashcards.length);
         span.innerText = flashcards[card] + ' ';
-        document.querySelector('textarea').value = '';
+        reverse();
     }
 
     function check_answer() {
         let term = document.getElementById('term').innerText.replace(' ','');
-        let answer = document.querySelector('textarea').value.replaceAll(' ', '');
-        let txtarea = document.getElementById('def_input')
-        console.log(`${fc_def[flashcards.indexOf(term)]}:${answer}`);
+        let answer = document.querySelector('textarea').value;
+        let txtarea = document.getElementById('def_input');
         if (fc_def[flashcards.indexOf(term)].toUpperCase() == answer.toUpperCase()) {
             txtarea.style="border: solid 4px #4AAD52;";
             return true;
@@ -76,6 +74,22 @@
             txtarea.style="border: solid 4px #FE4134;";
             return false;
         }
+    }
+
+    function show_hint() {
+        let hint = document.getElementById('hint');
+        let term = document.getElementById('term').innerText.replace(' ','');
+        let definition = fc_def[flashcards.indexOf(term)];
+        hint.innerText = definition;
+        hint.style.display = 'block';
+    }
+
+    function reverse() {
+        document.getElementById('def_input').style = 'border: solid 4px black';
+        let hint = document.getElementById('hint');
+        hint.innerText = '';
+        hint.style.display = 'none';
+        document.getElementById('def_input').value = '';
     }
 </script>
 
