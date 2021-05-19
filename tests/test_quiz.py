@@ -1,9 +1,8 @@
 """ Unit test for main quiz class """
 import pytest
-import mock
+import unittest.mock as mock
 import builtins
 from quizinator import Quiz
-from flashcard import FlashCard
 
 @pytest.fixture(name='quiz')
 def fixture_quiz():
