@@ -3,7 +3,7 @@
 # Author: Team 3
 # Date: April 30th, 2021
 import json
-from web_version.the_app.route.fc import practice
+#from web_version.the_app.route.fc import practice
 from menu import Menu
 from flashcard import FlashCard
 from os import path
@@ -281,3 +281,28 @@ class Quiz:
         while input('press Enter to see the other side of the card: ') != '':
             pass
         print(f"\n{second}:\n\t{test_def if second == 'Definition' else test_term}\n")
+
+    def practice_flashcard(self):
+        lst =[]
+        ans = ""
+        score =0
+        while ans!= 'q':
+            id_lst =   [x[0] for x in self._flashcard]
+            length = len(id_lst)
+            ran_num = random.randint(0, length -1 )
+            while ran_num not in lst:
+                ran_term = id_lst[ran_num]
+                print('term: ' ,self.quizinator[str(ran_term)]['term'])
+                ans = input('enter defination or q to quit: ')
+                if ans.lower()== self.quizinator[str(ran_term)]['def'].lower():
+                    score+=1
+                lst.append(ran_num)
+                if len(lst)  == len(id_lst):
+                    print('----------Your score------------')
+                    print('You scored ', score,'out of', length)
+                    ans ='q'
+                    break
+            
+    
+
+    

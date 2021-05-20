@@ -64,8 +64,9 @@ class Menu:
         print("\t3. Update flashcard")
         print("\t4. Delete flashcard")
         print("\t5. Search flashcard")
-        print("\t6. Practice flashcard")
-        print("\t7. Exit\n")
+        print("\t6. Display flashcard")
+        print("\t7. Practice flashcard")
+        print("\t8. Exit\n")
 
     def display_frame(self, phrase) -> None:
         """ Display sentence/phrase/word in a nicer format
