@@ -4,9 +4,12 @@
 # Date: April 30th, 2021
 import json
 from web_version.the_app.route.fc import practice
+from menu import Menu
 from flashcard import FlashCard
 from os import path
 import random
+
+menu = Menu()
 
 class Quiz:
     """ Beta version of the Quiz flash card app """
@@ -196,104 +199,85 @@ class Quiz:
 
     def practice(self):
         list_of_IDS = [x for x in self.quizinator if x != 'id']
-        print(list_of_IDS)
-        if len(list_of_IDS) == 0:
-            print("There are no flashcards in the current study set. Please create some to practice.")
         studied_cards = []
         """number of items in the dictionary"""
 
-
-        
-
         while len(list_of_IDS) != 0:
-            user_study_choice = input("Would you like to see the terms first if No the definition will be displayed first. Y/N\n")
+            user_study_choice = ''
+            while user_study_choice not in ['y', 'n']:
+                user_study_choice = input("Would you like to see the terms first if No the definition will be displayed first. Y/N\n").lower()
+            
             random_card = random.choice(list_of_IDS)
             """makes sure that when studying there are no repeated cards"""
             test_term = self.quizinator[random_card]['term']
             test_def = self.quizinator[random_card]['def']
 
             # adding current flash card into studied cards
-            print("RANDOM CARD: ",random_card)
-            print("LIST_OF_IDS: ", list_of_IDS)
             studied_cards.append(random_card)
             list_of_IDS.remove(random_card)
             """if the user enters 'Y/y' the term will be printed first"""
-            if (user_study_choice in ['y', 'Y']):
-                print(f"Term:\n{test_term}\n")
-                # print(f"Term:\n{self.quizinator[str(random_card)]['term']}\n")
-
-                # list_of_IDS.pop(list_of_IDS.index(random_card))
-                flipcard = input("press Enter to see the other side of the card: ")
-
-                """prints the rest of the flashcard when the user presses 'Enter'"""
-                while flipcard != "":
-                    flipcard= input("---press Enter to proceed---")
-
-                if flipcard == "":
-                    print(f"Term:\n\t{test_term}\n")
-                    print()
-                    print(f"Definition:\n\t{test_def}\n")
-            # if the user enters N/n the definition will be printed first
-            elif (user_study_choice in ['n', 'N']):
-                print(f"Definition:\n\t{test_def}\n")
-
-                """prints the rest of the flashcard when the user presses 'Enter'"""
-                flipcard = input("---press Enter to see the other side of the card---")
-                while flipcard != "":
-                    flipcard= input("---press Enter to proceed---")
-                if flipcard == "":
-                    print(f"Term:\n\t{test_term}\n")
-                    print()
-                    print(f"Definition:\n\t{test_def}\n")
+            self.display_card(True if user_study_choice == 'y' else False, test_term, test_def)
             
             """options to view the next card or previous"""
-            User_option = input("Select an option: N(ext), B(ack), E(xit): ")
-            if (User_option in ['n', 'N']):
-                continue
-            elif (User_option in ['b', 'B']):
-                print(studied_cards)
-                if len(studied_cards) == 0:
-                    print("There is no previous card to study.")
-                    continue
+            while True:
+                user_option = input("Select an option: N(ext), B(ack), E(xit): ").lower()
+                if (user_option == 'n'):
+                    break
+                elif (user_option == 'b'):
+                    while True:
+                        print(studied_cards)
+                        if self.go_back(studied_cards):
+                            menu.display_frame("Continuing with study")
+                            break
+                    break
+                elif (user_option == 'e'):
+                    break
                 else:
-                    self.practice_helper(studied_cards)
-            elif (User_option in ['e', 'E']):
-                break
-            elif len(list_of_IDS) == 0:
-                break
-            else:
-                raise ValueError("Please input a valid option argument.")
+                    print("Please input a valid option argument.")
 
-    def practice_helper(self, studied_cards):
-        old_card = studied_cards.pop()
-        test_term = self.quizinator[old_card]['term']
-        test_def = self.quizinator[old_card]['def']
-        user_study_choice = input("Would you like to see the terms first if No the definition will be displayed first. Y/N\n")
-        """makes sure that when studying there are no repeated cards"""
-        if (user_study_choice in ['y', 'Y']):
-            print(f"Term:\n{test_term}\n")
-            # print(f"Term:\n{self.quizinator[str(random_card)]['term']}\n")
+        if len(list_of_IDS) == 0:
+            print("\nGoodjob you've went through all the flashcards.")
 
-            # list_of_IDS.pop(list_of_IDS.index(random_card))
-            flipcard = input("press Enter to see the other side of the card: ")
 
-            """prints the rest of the flashcard when the user presses 'Enter'"""
-            while flipcard != "":
-                flipcard= input("---press Enter to proceed---")
+    def go_back(self, studied_cards):
+        menu.display_frame("Previous Flashcards")
+        try:
+            old_card = studied_cards.pop()
+            test_term = self.quizinator[old_card]['term']
+            test_def = self.quizinator[old_card]['def']
+        except IndexError:
+            print("\nNo more previously studied card\n")
+            return True
 
-            if flipcard == "":
-                print(f"Term:\n\t{test_term}\n")
-                print()
-                print(f"Definition:\n\t{test_def}\n")
-        # if the user enters N/n the definition will be printed first
-        elif (user_study_choice in ['n', 'N']):
-            print(f"Definition:\n\t{test_def}\n")
+        while True:
+            user_study_choice = input("Would you like to see the terms first if No the definition will be displayed first. Y/N\n")
+            """makes sure that when studying there are no repeated cards"""
+            self.display_card(True if user_study_choice == 'y' else False, test_term, test_def)
+            while True:
+                user_study_choice = input("What would you like to do: N(ext), B(ack), E(xit): ").lower()
+                if user_study_choice == 'e':
+                    return True
+                elif user_study_choice == 'n':
+                    return True
+                elif user_study_choice == 'b':
+                    return False
+                else:
+                    print("Please input a valid option argument.")
 
-            """prints the rest of the flashcard when the user presses 'Enter'"""
-            flipcard = input("---press Enter to see the other side of the card---")
-            while flipcard != "":
-                flipcard= input("---press Enter to proceed---")
-            if flipcard == "":
-                print(f"Term:\n\t{test_term}\n")
-                print()
-                print(f"Definition:\n\t{test_def}\n")
+    def search_flashcard(self, term):
+        if term not in [x[1] for x in self._flashcard]:
+            raise ValueError
+        else:
+            for i in self._flashcard:
+                if term == i[1]:
+                    fc_id = i[0]
+                    print('term :',term)
+                    print('defination :',self.quizinator[fc_id]["def"])
+    
+    def display_card(self, side: bool, test_term: str, test_def:str):
+        first = "Term" if side else "Definition"
+        second = "Definition" if first == 'Term' else "Term"
+        print(f"{first}:\n\t{test_term if first == 'Term' else test_def}\n")
+        while input('press Enter to see the other side of the card: ') != '':
+            pass
+        print(f"\n{second}:\n\t{test_def if second == 'Definition' else test_term}\n")
