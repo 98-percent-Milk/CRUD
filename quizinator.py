@@ -3,7 +3,7 @@
 # Author: Team 3
 # Date: April 30th, 2021
 import json
-#from web_version.the_app.route.fc import practice
+from web_version.the_app.route.fc import practice
 from menu import Menu
 from flashcard import FlashCard
 from os import path
@@ -281,8 +281,10 @@ class Quiz:
         while input('press Enter to see the other side of the card: ') != '':
             pass
         print(f"\n{second}:\n\t{test_def if second == 'Definition' else test_term}\n")
+        
 
     def practice_flashcard(self):
+        """ A function to practice existing flashcards and get score"""
         lst =[]
         ans = ""
         score =0
