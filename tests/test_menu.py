@@ -19,10 +19,9 @@ def test_get_choice_input_valid(menu):
         assert menu._get_choice_input == 1
 
 def test_get_choice_input_invalid(menu):
-    with mock.patch.object(builtins, 'input', side_effect=[7, -1, 99, 1]):
+    with mock.patch.object(builtins, 'input', side_effect=[8, -1, 99, 1]):
         assert menu._get_choice_input == 1
 
 def test_get_input_valueError(menu):
-    # with pytest.raises(ValueError):
     with mock.patch.object(builtins, 'input', side_effect=['1.2', 'potato', '1']):
         menu._get_choice_input

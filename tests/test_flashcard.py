@@ -51,9 +51,6 @@ def test_serialization(flashcard):
         'def': 'programming language'
     }
 
-
-
-
 # tests for removing
 def test_remove_fc(flashcard):
     pass
