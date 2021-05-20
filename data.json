@@ -1,6 +1,5 @@
 {
-    "id": [
-    ],
+    "id": [],
     "1": {
         "id": "1",
         "term": "python",
@@ -10,5 +9,10 @@
         "id": "2",
         "term": "html/css",
         "def": "A programming language used for web interfaces"
+    },
+    "3": {
+        "id": "3",
+        "term": "hello",
+        "def": "potato"
     }
 }
