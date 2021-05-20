@@ -1,6 +1,6 @@
 """ Unit test for main quiz class """
 import pytest
-import unittest.mock as mock
+import mock
 import builtins
 from main import main
 

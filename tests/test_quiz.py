@@ -1,6 +1,6 @@
 """ Unit test for main quiz class """
 import pytest
-import unittest.mock as mock
+import mock
 import builtins
 from quizinator import Quiz
 
@@ -23,17 +23,17 @@ def test_add_fc(quiz):
     """ Unit test for adding new flashcard into database """
     with mock.patch.object(builtins, 'input', side_effect=['html/css', 'web interface']):
         quiz.add_flashcard()
-        assert quiz.quizinator['3']['id'] == '3'   
-        assert quiz.quizinator['3']['term'] == 'html/css'
-        assert quiz.quizinator['3']['def'] == 'web interface'
+        assert quiz.quizinator['2']['id'] == '2'   
+        assert quiz.quizinator['2']['term'] == 'html/css'
+        assert quiz.quizinator['2']['def'] == 'web interface'
 
 def test_add_fc_again(quiz):
     """ Unit test for adding already existing fc into the database """
     with mock.patch.object(builtins, 'input', side_effect=['python', 'java', 'language']):
         quiz.add_flashcard()
-        assert quiz.quizinator['4']['id'] == '4'
-        assert quiz.quizinator['4']['term'] == 'java'
-        assert quiz.quizinator['4']['def'] == 'language'
+        assert quiz.quizinator['3']['id'] == '3'
+        assert quiz.quizinator['3']['term'] == 'java'
+        assert quiz.quizinator['3']['def'] == 'language'
 
 def test_check_fc(quiz):
     """ Unit test for checking if the flashcard already exists in the database """
@@ -41,7 +41,7 @@ def test_check_fc(quiz):
 
 def test_remove_fc(quiz):
     """ Unit test for removing flashcard from the database """
-    with mock.patch.object(builtins, 'input', side_effect=['5', '4']):
+    with mock.patch.object(builtins, 'input', side_effect=['4', '3']):
         quiz.remove_flashcard()
 
 def test_view_fc(quiz):
@@ -61,7 +61,7 @@ def test_edit_fc(quiz):
 def test_generate_id(quiz):
     """ Unit test for generating unique id for flashcards """
     new_id = quiz.generate_id()
-    assert new_id == '4'
+    assert new_id == '3'
 
 def test_search_fc(quiz):
     """ Unit test for Value Error while searching existing flashcard in database """
