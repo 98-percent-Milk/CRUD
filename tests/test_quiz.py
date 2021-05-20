@@ -68,6 +68,27 @@ def test_search_fc(quiz):
     with pytest.raises(ValueError):
         quiz.search_flashcard('CSS')
         
-def test_practice_empty_input_fc(quiz):
-    """checks that the correct value is returned when an empty list is given"""
-    assert quiz.practice() == "There are no flashcards in the current study set. Please create some to practice."
+def test_learn_show_all_fc(quiz):
+    """ Unit test to display all the flashcard in the database """
+    with mock.patch.object(builtins, 'input', side_effect=['y', 'no', '', 't', 'n', 'n', 'yes', '', 'e']):
+        quiz.practice()
+
+def test_learn_show_studied_fc(quiz):
+    """ Unit test to display all the previously studied fc in db """
+    inputs = ['y', '', 'n', 'n', '', 'b', 'y', '', 'b', 'y', '', 'b']
+    with mock.patch.object(builtins, 'input', side_effect = inputs):
+        quiz.practice()
+
+def test_go_back_exit(quiz):
+    """ Unit test for existing from go back function """
+    inputs = ['y', '', 'b', 'y', '', 't', 'e', 't', 'y', '', 'e']
+    with mock.patch.object(builtins, 'input', side_effect = inputs):
+        quiz.practice()
+
+    inputs = ['y', '', 'b', 'y', '', 't', 'n', 't', 'y', '', 'e']
+    with mock.patch.object(builtins, 'input', side_effect = inputs):
+        quiz.practice()
+
+def test_search(quiz):
+    """ Unit test for searching fc in db """
+    quiz.search_flashcard('python')
