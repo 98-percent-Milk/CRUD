@@ -219,7 +219,7 @@ class Quiz:
             self.display_card(True if user_study_choice == 'y' else False, test_term, test_def)
 
 
-            print(f"progress {len(studied_cards)}/{len(self.quizinator.keys())}")
+            print(f"progress {len(studied_cards)}/{len(self.quizinator.keys()-1)}")
             """options to view the next card or previous"""
             while True:
                 user_option = input("Select an option: N(ext), B(ack), E(xit): ").lower()
