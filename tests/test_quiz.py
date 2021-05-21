@@ -81,14 +81,27 @@ def test_learn_show_studied_fc(quiz):
 
 def test_go_back_exit(quiz):
     """ Unit test for existing from go back function """
-    inputs = ['y', '', 'b', 'y', '', 't', 'e', 't', 'y', '', 'e']
+    inputs = ['y', '', 'n', '', 't', 'b', '', 'b']
     with mock.patch.object(builtins, 'input', side_effect = inputs):
         quiz.practice()
 
-    inputs = ['y', '', 'b', 'y', '', 't', 'n', 't', 'y', '', 'e']
+    inputs = ['n', '', 'n', '', 'b', '', 'n']
+    with mock.patch.object(builtins, 'input', side_effect = inputs):
+        quiz.practice()
+
+    inputs = ['n', '', 'n', '', 'b', '', 't', 'e']
     with mock.patch.object(builtins, 'input', side_effect = inputs):
         quiz.practice()
 
 def test_search(quiz):
     """ Unit test for searching fc in db """
+    with pytest.raises(ValueError):
+        quiz.search_flashcard('intresting')
+
     quiz.search_flashcard('python')
+
+def test_continues_practice(quiz):
+    """ Unit test for practice function """
+    inputs = ['7', 'web interface', 'web interface']
+    with mock.patch.object(builtins, 'input', side_effect=inputs):
+        quiz.practice_flashcard()

@@ -38,3 +38,8 @@ def test_menu_option_six():
     """ Unit test for searching learning flashcard """
     with mock.patch.object(builtins, 'input', side_effect=['6', 'y', '', 'n', 'n', '', 'e', '8']):
         main()
+
+def test_menu_option_seven():
+    """ Unit test for practice function """
+    with mock.patch.object(builtins, 'input', side_effect=['7', 'q', '8']):
+        main()
