@@ -4,10 +4,5 @@
         "id": "1",
         "term": "python",
         "def": "Main language"
-    },
-    "2": {
-        "id": "2",
-        "term": "coffee",
-        "def": "Coffee is the elixer of the gods."
     }
 }
