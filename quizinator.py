@@ -20,7 +20,6 @@ class Quiz:
         ---------------
         data_path: str
             Path to local storage
-
         Return
         ---------------
         None
@@ -45,7 +44,6 @@ class Quiz:
         ---------------
         prompt: str
             Prompt question for input function
-
         Return
         ---------------
         result: str
@@ -65,7 +63,6 @@ class Quiz:
         --------------
         term: str
             new flashcard term
-
         Return
         -------------
         found: bool
@@ -80,11 +77,9 @@ class Quiz:
 
     def generate_id(self):
         """ Generates new unique id for the flashcard
-
         Parameter
         --------------
         None
-
         Return
         -------------
         new_id: str
@@ -212,26 +207,23 @@ class Quiz:
         list_of_IDS = [x for x in self.quizinator if x != 'id']
         studied_cards = []
         """number of items in the dictionary"""
+        user_study_choice = ''
+        while user_study_choice not in ['y', 'n']:
+            user_study_choice = input("Would you like to see the terms first if No the definition will be displayed first. Y/N\n").lower()
+        side = True if user_study_choice == 'y' else False
 
         while len(list_of_IDS) != 0:
-            user_study_choice = ''
-            while user_study_choice not in ['y', 'n']:
-                user_study_choice = input("Would you like to see the terms first if No the definition will be displayed first. Y/N\n").lower()
             
             random_card = random.choice(list_of_IDS)
             """makes sure that when studying there are no repeated cards"""
-            print(f"progress {len(studied_cards) + 1}/{len(self.quizinator.keys())- 1}")
             test_term = self.quizinator[random_card]['term']
             test_def = self.quizinator[random_card]['def']
-            
 
             # adding current flash card into studied cards
-            studied_cards.append(random_card)
             list_of_IDS.remove(random_card)
             """if the user enters 'Y/y' the term will be printed first"""
-            self.display_card(True if user_study_choice == 'y' else False, test_term, test_def)
-
-
+            self.display_card(side, test_term, test_def)
+            
             """options to view the next card or previous"""
             while True:
                 user_option = input("Select an option: N(ext), B(ack), E(xit): ").lower()
@@ -240,7 +232,7 @@ class Quiz:
                 elif (user_option == 'b'):
                     while True:
                         print(studied_cards)
-                        if self.go_back(studied_cards):
+                        if self.go_back(studied_cards, side):
                             menu.display_frame("Continuing with study")
                             break
                     break
@@ -249,21 +241,12 @@ class Quiz:
                 else:
                     print("Please input a valid option argument.")
 
+            studied_cards.append(random_card)
         if len(list_of_IDS) == 0:
             print("\nGoodjob you've went through all the flashcards.")
-            
-    def back_a_card(self, studied_cards, user_study_choice, user_option):
-        menu.display_frame("previous Flashcards")
-        last_card = studied_cards.pop(len(studied_cards) - 2)
-        studied_cards.append(last_card)
-        last_term = self.quizinator[last_card]['term']
-        last_def = self.quizinator[last_card]['def']
-        if len(studied_cards) is 1:
-            print("\nNo previous cards to study")
-        return True
-        
 
-    def go_back(self, studied_cards):
+
+    def go_back(self, studied_cards, side):
         menu.display_frame("Previous Flashcards")
         try:
             old_card = studied_cards.pop()
@@ -271,12 +254,10 @@ class Quiz:
             test_def = self.quizinator[old_card]['def']
         except IndexError:
             print("\nNo more previously studied card\n")
-            
+            return True
 
         while True:
-            user_study_choice = input("Would you like to see the terms first if No the definition will be displayed first. Y/N\n")
-            """makes sure that when studying there are no repeated cards"""
-            self.display_card(True if user_study_choice == 'y' else False, test_term, test_def)
+            self.display_card(side, test_term, test_def)
             while True:
                 user_study_choice = input("What would you like to do: N(ext), B(ack), E(xit): ").lower()
                 if user_study_choice == 'e':
@@ -328,7 +309,3 @@ class Quiz:
                     print('You scored ', score,'out of', length)
                     ans ='q'
                     break
-            
-    
-
-    
