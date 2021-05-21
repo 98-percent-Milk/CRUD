@@ -40,8 +40,8 @@ def main() -> None:
             quiz.search_flashcard(term)
             
         elif choice == 6:
-            menu.display_frame('Practice')
-            quiz.practice()
+            menu.display_frame('Learn your flashcards')
+            quiz.learn()
             print()
             
         elif choice == 7:

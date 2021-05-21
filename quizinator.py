@@ -20,7 +20,6 @@ class Quiz:
         ---------------
         data_path: str
             Path to local storage
-
         Return
         ---------------
         None
@@ -45,7 +44,6 @@ class Quiz:
         ---------------
         prompt: str
             Prompt question for input function
-
         Return
         ---------------
         result: str
@@ -65,7 +63,6 @@ class Quiz:
         --------------
         term: str
             new flashcard term
-
         Return
         -------------
         found: bool
@@ -80,11 +77,9 @@ class Quiz:
 
     def generate_id(self):
         """ Generates new unique id for the flashcard
-
         Parameter
         --------------
         None
-
         Return
         -------------
         new_id: str
@@ -197,8 +192,7 @@ class Quiz:
         self.quizinator['id'].append(user_input)
         self.save_quizinator()
 
-
-    def practice(self):
+    def learn(self):
         list_of_IDS = [x for x in self.quizinator if x != 'id']
         studied_cards = []
         """number of items in the dictionary"""
@@ -239,7 +233,6 @@ class Quiz:
             studied_cards.append(random_card)
         if len(list_of_IDS) == 0:
             print("\nGoodjob you've went through all the flashcards.")
-
 
     def go_back(self, studied_cards, side):
         menu.display_frame("Previous Flashcards")
