@@ -212,11 +212,12 @@ class Quiz:
         list_of_IDS = [x for x in self.quizinator if x != 'id']
         studied_cards = []
         """number of items in the dictionary"""
+        user_study_choice = ''
+        while user_study_choice not in ['y', 'n']:
+            user_study_choice = input("Would you like to see the terms first if No the definition will be displayed first. Y/N\n").lower()
+        side = True if user_study_choice == 'y' else False
 
         while len(list_of_IDS) != 0:
-            user_study_choice = ''
-            while user_study_choice not in ['y', 'n']:
-                user_study_choice = input("Would you like to see the terms first if No the definition will be displayed first. Y/N\n").lower()
             
             random_card = random.choice(list_of_IDS)
             """makes sure that when studying there are no repeated cards"""
@@ -224,10 +225,9 @@ class Quiz:
             test_def = self.quizinator[random_card]['def']
 
             # adding current flash card into studied cards
-            studied_cards.append(random_card)
             list_of_IDS.remove(random_card)
             """if the user enters 'Y/y' the term will be printed first"""
-            self.display_card(True if user_study_choice == 'y' else False, test_term, test_def)
+            self.display_card(side, test_term, test_def)
             
             """options to view the next card or previous"""
             while True:
@@ -237,7 +237,7 @@ class Quiz:
                 elif (user_option == 'b'):
                     while True:
                         print(studied_cards)
-                        if self.go_back(studied_cards):
+                        if self.go_back(studied_cards, side):
                             menu.display_frame("Continuing with study")
                             break
                     break
@@ -246,11 +246,12 @@ class Quiz:
                 else:
                     print("Please input a valid option argument.")
 
+            studied_cards.append(random_card)
         if len(list_of_IDS) == 0:
             print("\nGoodjob you've went through all the flashcards.")
 
 
-    def go_back(self, studied_cards):
+    def go_back(self, studied_cards, side):
         menu.display_frame("Previous Flashcards")
         try:
             old_card = studied_cards.pop()
@@ -261,9 +262,7 @@ class Quiz:
             return True
 
         while True:
-            user_study_choice = input("Would you like to see the terms first if No the definition will be displayed first. Y/N\n")
-            """makes sure that when studying there are no repeated cards"""
-            self.display_card(True if user_study_choice == 'y' else False, test_term, test_def)
+            self.display_card(side, test_term, test_def)
             while True:
                 user_study_choice = input("What would you like to do: N(ext), B(ack), E(xit): ").lower()
                 if user_study_choice == 'e':
