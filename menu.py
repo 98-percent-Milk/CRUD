@@ -64,7 +64,7 @@ class Menu:
         print("\t3. Update flashcard")
         print("\t4. Delete flashcard")
         print("\t5. Search flashcard")
-        print("\t6. Display flashcard")
+        print("\t6. Learn flashcards")
         print("\t7. Practice flashcard")
         print("\t8. Exit\n")
 

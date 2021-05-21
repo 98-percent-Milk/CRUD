@@ -20,7 +20,6 @@ class Quiz:
         ---------------
         data_path: str
             Path to local storage
-
         Return
         ---------------
         None
@@ -45,7 +44,6 @@ class Quiz:
         ---------------
         prompt: str
             Prompt question for input function
-
         Return
         ---------------
         result: str
@@ -65,7 +63,6 @@ class Quiz:
         --------------
         term: str
             new flashcard term
-
         Return
         -------------
         found: bool
@@ -80,11 +77,9 @@ class Quiz:
 
     def generate_id(self):
         """ Generates new unique id for the flashcard
-
         Parameter
         --------------
         None
-
         Return
         -------------
         new_id: str
@@ -197,18 +192,7 @@ class Quiz:
         self.quizinator['id'].append(user_input)
         self.save_quizinator()
 
-    def search_flashcard(self, term):
-        if term not in [x[1] for x in self._flashcard]:
-            raise ValueError
-        else:
-            for i in self._flashcard:
-                if term == i[1]:
-                    fc_id = i[0]
-                    print('term :',term)
-                    print('defination :',self.quizinator[fc_id]["def"])
-
-
-    def practice(self):
+    def learn(self):
         list_of_IDS = [x for x in self.quizinator if x != 'id']
         studied_cards = []
         """number of items in the dictionary"""
@@ -221,7 +205,6 @@ class Quiz:
             
             random_card = random.choice(list_of_IDS)
             """makes sure that when studying there are no repeated cards"""
-            print(f"progress {len(studied_cards)}/{len(self.quizinator.keys())- 1}")
             test_term = self.quizinator[random_card]['term']
             test_def = self.quizinator[random_card]['def']
 
@@ -250,7 +233,6 @@ class Quiz:
             studied_cards.append(random_card)
         if len(list_of_IDS) == 0:
             print("\nGoodjob you've went through all the flashcards.")
-
 
     def go_back(self, studied_cards, side):
         menu.display_frame("Previous Flashcards")
@@ -315,7 +297,3 @@ class Quiz:
                     print('You scored ', score,'out of', length)
                     ans ='q'
                     break
-            
-    
-
-    
