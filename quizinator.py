@@ -221,6 +221,7 @@ class Quiz:
             
             random_card = random.choice(list_of_IDS)
             """makes sure that when studying there are no repeated cards"""
+            print(f"progress {len(studied_cards)}/{len(self.quizinator.keys())- 1}")
             test_term = self.quizinator[random_card]['term']
             test_def = self.quizinator[random_card]['def']
 
