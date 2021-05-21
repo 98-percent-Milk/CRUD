@@ -26,17 +26,23 @@ def add_flashcard():
     if request.method == 'POST':
         session.permanent = True
         fc_term = request.form['term']
+        fc_def = request.form['definition']
 
         found_fc = flash_card.query.filter_by(term=fc_term).first()
         if found_fc: #when flashcard already exists in the database
-            flash(f"Flashcard:<{fc_term}> already exists in the database")
+            flash(f"Flashcard:<{fc_term}> already exists here in the database")
             return render_template('single_flashcard.html', card=found_fc)
+        elif fc_term == "":
+            flash("Please enter a Term")
+            return render_template("create.html")
+        elif fc_def == "":
+            flash("Please enter a Definition")
+            return render_template("create.html")
         else: # when flashcard doesn't exist in the database
-            fc_def = request.form['definition']
             new_flashcard = flash_card(fc_term, fc_def)
             db.session.add(new_flashcard)
             db.session.commit()
-            flash("Succefully added a new flashcard")
+            flash("Successfully added a new flashcard")
         return redirect(url_for('fc.fc_index'))
     else:
         return render_template("create.html")

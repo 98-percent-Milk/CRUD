@@ -1,16 +1,15 @@
 {% extends "base.html" %}
 {% block main %}
 
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-        {% for msg in messages %}
-            <p>{{msg}}</p>
-        {% endfor %}
-    {% endif %}
-{% endwith %}
-
-<div class='container'>
+<div class="container">
     <br>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p><b><i>{{msg}}</i></b></p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
     <div class="row show-grid">
         <h1 class="page-header">Editing Flashcard</h1>
     </div>
@@ -24,7 +23,7 @@
 
     <div class="card my-2">
         <div class="card-body">
-            <form action="" method='POST'>
+            <form action="" method="POST">
                 <div class="form-group">
                     <label for="term">New Term</label>
                     <input type="text" name="term" class="form-control" id="term_input" placeholder="Enter new term">     <!--specific card term-->
@@ -35,8 +34,8 @@
                     <textarea class="form-control" id="def_input" rows="3" placeholder="Enter new definition" name="definition"></textarea>    <!--specific card def-->
                 </div>
                 <br>
-                <button type="submit" class="btn btn-warning" name='save' formaction="/fc/update/{{card.id}}">Save</button>
-                <button type='submit' class='btn btn-warning' name='cancel' formaction="/fc/cancel">Cancel</button>
+                <button type="submit" class="btn btn-warning" name="save" formaction="/fc/update/{{card.id}}">Save</button>
+                <button type='submit' class='btn btn-warning' name="cancel" formaction="/fc/cancel">Cancel</button>
             </form>
         </div>
     </div>
