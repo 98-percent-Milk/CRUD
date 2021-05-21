@@ -75,7 +75,14 @@ def update(fc_id: int):
         found_fc = flash_card.query.filter_by(id=fc_id).first()
         found_fc.term = request.form['term']
         found_fc.definition = request.form['definition']
-        db.session.commit()
+        if found_fc.term == "":
+            flash("New term not entered")
+            return render_template('single_flashcard.html', card=found_fc)
+        if found_fc.definition == "":
+            flash("New definition not entered")
+            return render_template('single_flashcard.html', card=found_fc)
+        else:
+            db.session.commit()
         return redirect(url_for('fc.view'))
     else:
         return redirect(url_for('fc.view'))
