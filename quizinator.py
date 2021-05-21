@@ -299,8 +299,8 @@ class Quiz:
                 if ans.lower()== self.quizinator[str(ran_term)]['def'].lower():
                     score+=1
                 lst.append(ran_num)
-                if len(lst)  == len(id_lst):
+                if len(lst) == len(id_lst):
                     print('----------Your score------------')
                     print('You scored ', score,'out of', length)
-                    ans ='q'
+                    ans = 'q'
                     break
