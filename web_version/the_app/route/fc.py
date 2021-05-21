@@ -90,3 +90,7 @@ def practice():
     terms = [x[0] for x in fc_terms]
     definition = [x[0] for x in fc_definition]
     return render_template('practice.html', flashcards = terms, fc_def=definition)
+
+@fc.route("/cancel", methods=['POST'])
+def cancel():
+    return redirect(url_for('fc.view'))
