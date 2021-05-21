@@ -197,7 +197,18 @@ class Quiz:
         self.quizinator['id'].append(user_input)
         self.save_quizinator()
 
-    def learn(self):
+    def search_flashcard(self, term):
+        if term not in [x[1] for x in self._flashcard]:
+            raise ValueError
+        else:
+            for i in self._flashcard:
+                if term == i[1]:
+                    fc_id = i[0]
+                    print('term :',term)
+                    print('defination :',self.quizinator[fc_id]["def"])
+
+
+    def practice(self):
         list_of_IDS = [x for x in self.quizinator if x != 'id']
         studied_cards = []
         """number of items in the dictionary"""
@@ -209,6 +220,7 @@ class Quiz:
             
             random_card = random.choice(list_of_IDS)
             """makes sure that when studying there are no repeated cards"""
+            print(f"progress {len(studied_cards) + 1}/{len(self.quizinator.keys())- 1}")
             test_term = self.quizinator[random_card]['term']
             test_def = self.quizinator[random_card]['def']
 
@@ -292,3 +304,30 @@ class Quiz:
         while input('press Enter to see the other side of the card: ') != '':
             pass
         print(f"\n{second}:\n\t{test_def if second == 'Definition' else test_term}\n")
+        
+
+    def practice_flashcard(self):
+        """ A function to practice existing flashcards and get score"""
+        lst =[]
+        ans = ""
+        score =0
+        while ans!= 'q':
+            id_lst =   [x[0] for x in self._flashcard]
+            length = len(id_lst)
+            ran_num = random.randint(0, length -1 )
+            while ran_num not in lst:
+                ran_term = id_lst[ran_num]
+                print('term: ' ,self.quizinator[str(ran_term)]['term'])
+                ans = input('enter defination or q to quit: ')
+                if ans.lower()== self.quizinator[str(ran_term)]['def'].lower():
+                    score+=1
+                lst.append(ran_num)
+                if len(lst)  == len(id_lst):
+                    print('----------Your score------------')
+                    print('You scored ', score,'out of', length)
+                    ans ='q'
+                    break
+            
+    
+
+    

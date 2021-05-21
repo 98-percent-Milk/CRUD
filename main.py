@@ -41,10 +41,13 @@ def main() -> None:
             
         elif choice == 6:
             menu.display_frame('Practice')
-            quiz.learn()
+            quiz.practice()
             print()
             
         elif choice == 7:
+            quiz.practice_flashcard()
+
+        elif choice == 8:
             return False
 
 if __name__  == '__main__':
