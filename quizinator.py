@@ -304,7 +304,3 @@ class Quiz:
                     print('You scored ', score,'out of', length)
                     ans ='q'
                     break
-            
-    
-
-    
