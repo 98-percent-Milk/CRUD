@@ -223,6 +223,7 @@ class Quiz:
             print(f"progress {len(studied_cards) + 1}/{len(self.quizinator.keys())- 1}")
             test_term = self.quizinator[random_card]['term']
             test_def = self.quizinator[random_card]['def']
+            
 
             # adding current flash card into studied cards
             studied_cards.append(random_card)
