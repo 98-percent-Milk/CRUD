@@ -1,21 +1,22 @@
 {% extends "base.html" %}
 {% block main %}
 
-<form class='container' action='#' method="POST">
+<form class='container' action='' method="POST">
     <br>
     <h1>Add New Flashcard</h1>
     <br>
     <div class="form-group">
-        <label for="Term">Term</label>
+        <label for="Term"><b>Term</b></label>
         <input type="text" class="form-control" id="term_input" placeholder="Enter term name here" name="term">
     </div>
     <br>
     <div class="form-group">
-        <label for="definition">Definition</label>
+        <label for="definition"><b>Definition</b></label>
         <textarea class="form-control" id="definition_input" rows="3" placeholder="Enter definition here" name="definition"></textarea>
     </div>
     <br>
-    <button type="submit" class="btn btn-warning" formmethod="POST">Save</button>
+    <button type="submit" class="btn btn-warning" formaction="/fc/add">Save</button>
+    <button type='submit' class='btn btn-warning' name='cancel' formaction="/fc/">Cancel</button>
 </form>
 
 
