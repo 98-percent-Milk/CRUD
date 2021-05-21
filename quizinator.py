@@ -291,7 +291,7 @@ class Quiz:
         while input('press Enter to see the other side of the card: ') != '':
             pass
         print(f"\n{second}:\n\t{test_def if second == 'Definition' else test_term}\n")
-        
+
 
     def practice_flashcard(self):
         """ A function to practice existing flashcards and get score"""
@@ -304,8 +304,8 @@ class Quiz:
             ran_num = random.randint(0, length -1 )
             while ran_num not in lst:
                 ran_term = id_lst[ran_num]
-                print('term: ' ,self.quizinator[str(ran_term)]['term'])
-                ans = input('enter defination or q to quit: ')
+                print('Term: ' ,self.quizinator[str(ran_term)]['term'])
+                ans = input('Enter defination or q to quit: ')
                 if ans.lower()== self.quizinator[str(ran_term)]['def'].lower():
                     score+=1
                 lst.append(ran_num)
