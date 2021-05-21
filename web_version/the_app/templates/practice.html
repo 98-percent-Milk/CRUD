@@ -16,7 +16,8 @@
             <div class="form-group">
                 <label for="question">What is <b><span id="term"></b>?</span></label>
                 <textarea class="form-control mt-2" id="def_input" rows="3" placeholder="Answer here" name="definition"></textarea>
-                <textarea class="form-control mt-2" id="hint" rows="1" placeholder="Hint" name="hint" style="display: none;""></textarea>
+                <!-- <textarea class="form-control mt-2" id="hint" rows="1" placeholder="Hint" name="hint" style="display: none;""></textarea> -->
+                <br><i><p id="hint" name="hint"></p></i>
                 <button type="submit" class="btn btn-outline-dark mt-2" onclick="check_answer()">Check</button>
                 <button type="submit" class="btn btn-outline-dark mt-2" onclick='show_hint()'>Hint</button>
             </div>
