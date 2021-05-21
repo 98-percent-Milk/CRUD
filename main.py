@@ -45,6 +45,9 @@ def main() -> None:
             print()
             
         elif choice == 7:
+            quiz.practice_flashcard()
+
+        elif choice == 8:
             return False
 
 if __name__  == '__main__':

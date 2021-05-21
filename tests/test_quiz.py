@@ -3,7 +3,6 @@ import pytest
 import mock
 import builtins
 from quizinator import Quiz
-from flashcard import FlashCard
 
 @pytest.fixture(name='quiz')
 def fixture_quiz():
