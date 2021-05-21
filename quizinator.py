@@ -245,7 +245,6 @@ class Quiz:
         if len(list_of_IDS) == 0:
             print("\nGoodjob you've went through all the flashcards.")
 
-
     def go_back(self, studied_cards, side):
         menu.display_frame("Previous Flashcards")
         try:
