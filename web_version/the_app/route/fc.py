@@ -76,10 +76,10 @@ def update(fc_id: int):
         found_fc.term = request.form['term']
         found_fc.definition = request.form['definition']
         if found_fc.term == "":
-            flash("New term not entered")
+            flash("Cannot save, new term not entered")
             return render_template('single_flashcard.html', card=found_fc)
         if found_fc.definition == "":
-            flash("New definition not entered")
+            flash("Cannot save, new definition not entered")
             return render_template('single_flashcard.html', card=found_fc)
         else:
             db.session.commit()
