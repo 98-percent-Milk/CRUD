@@ -197,7 +197,7 @@ class Quiz:
         self.quizinator['id'].append(user_input)
         self.save_quizinator()
 
-    def practice(self):
+    def learn(self):
         list_of_IDS = [x for x in self.quizinator if x != 'id']
         studied_cards = []
         """number of items in the dictionary"""
@@ -217,7 +217,9 @@ class Quiz:
             list_of_IDS.remove(random_card)
             """if the user enters 'Y/y' the term will be printed first"""
             self.display_card(True if user_study_choice == 'y' else False, test_term, test_def)
-            
+
+
+            print(f"progress {len(studied_cards)}/{len(self.quizinator.keys())}")
             """options to view the next card or previous"""
             while True:
                 user_option = input("Select an option: N(ext), B(ack), E(xit): ").lower()
@@ -237,7 +239,17 @@ class Quiz:
 
         if len(list_of_IDS) == 0:
             print("\nGoodjob you've went through all the flashcards.")
-
+            
+    def back_a_card(self, studied_cards, user_study_choice, user_option):
+        menu.display_frame("previous Flashcards")
+        last_card = studied_cards.pop(len(studied_cards) - 2)
+        studied_cards.append(last_card)
+        last_term = self.quizinator[last_card]['term']
+        last_def = self.quizinator[last_card]['def']
+        if len(studied_cards) is 1:
+            print("\nNo previous cards to study")
+        return True
+        
 
     def go_back(self, studied_cards):
         menu.display_frame("Previous Flashcards")
@@ -247,7 +259,7 @@ class Quiz:
             test_def = self.quizinator[old_card]['def']
         except IndexError:
             print("\nNo more previously studied card\n")
-            return True
+            
 
         while True:
             user_study_choice = input("Would you like to see the terms first if No the definition will be displayed first. Y/N\n")

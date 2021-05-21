@@ -41,7 +41,7 @@ def main() -> None:
             
         elif choice == 6:
             menu.display_frame('Practice')
-            quiz.practice()
+            quiz.learn()
             print()
             
         elif choice == 7:
