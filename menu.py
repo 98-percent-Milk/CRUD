@@ -36,7 +36,7 @@ class Menu:
         while type(choice) != int:
             try:
                 choice = int(input("What would like to do: "))
-                if choice > 7 or choice < 1:
+                if choice > 8 or choice < 1:
                     print(f"\tSorry {choice} is not a valid menu option. Try again")
                     choice = ''
                     self.display_menu
