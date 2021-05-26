@@ -7,3 +7,4 @@ __pycache__/
 /venv
 data.json
 /webapp/flash_card.sqlite3
+data.json
