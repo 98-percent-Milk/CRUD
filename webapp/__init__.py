@@ -1,6 +1,7 @@
+from .route.fc import flash_card, add_flashcard, fc_index, view, pop_fc, delete, update, edit, practice, cancel, fc, db
+
 from flask import Flask
 from datetime import time, timedelta
-from route.fc import fc, db
 
 app = Flask(__name__)
 app.register_blueprint(fc)
@@ -18,10 +19,3 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # @app.route('/login')
 # def login():
 #     return "<h1>This is going to be the login page </h1>"
-
-
-if __name__ == '__main__':
-    db.init_app(app)
-    with app.app_context():
-        db.create_all()
-    app.run(debug=True, port=8000)
