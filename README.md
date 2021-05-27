@@ -6,3 +6,6 @@ This is a quizzing/flashcard application meant to help users study in a simple m
 ## How to Install
 
 ## Instructions
+### Terminal
+
+### Web
