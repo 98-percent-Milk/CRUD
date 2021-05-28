@@ -196,7 +196,17 @@ class Quiz:
         self.quizinator['id'].append(user_input)
         self.save_quizinator()
 
-    def learn(self):
+    def learn(self) -> None:
+        """ Display flashcards on the screen one by one in a randomly generated order
+        
+        Parameter
+        ---------------
+        None
+        
+        Return
+        ---------------
+        None
+        """
         list_of_IDS = [x for x in self.quizinator if x != 'id']
         studied_cards = []
         """number of items in the dictionary"""
@@ -238,7 +248,20 @@ class Quiz:
         if len(list_of_IDS) == 0:
             print("\nGoodjob you've went through all the flashcards.")
 
-    def go_back(self, studied_cards, side):
+    def go_back(self, studied_cards: list, side: bool) -> None:
+        """ Allows you to display previously studied flash card on the screen
+        
+        Parameter
+        ---------------
+        studied_cards: list
+            List of studied flashcards
+        side: bool
+            Boolean value to display term or definition
+        
+        Return
+        ---------------
+        None
+        """
         menu.display_frame("Previous Flashcards")
         try:
             old_card = studied_cards.pop()
@@ -261,7 +284,19 @@ class Quiz:
                 else:
                     print("Please input a valid option argument.")
 
-    def search_flashcard(self, term):
+    def search_flashcard(self, term: str) -> None:
+        """ Search flashcard from the database. Display the flashcard if found
+        else raise ValueError
+        
+        Parameter
+        ---------------
+        term: str
+            Flashcard term
+        
+        Return
+        ---------------
+        None
+        """
         if term not in [x[1] for x in self._flashcard]:
             raise ValueError("Term not in database.")
         else:
@@ -271,7 +306,22 @@ class Quiz:
                     print('term :',term)
                     print('defination :',self.quizinator[fc_id]["def"])
     
-    def display_card(self, side: bool, test_term: str, test_def:str):
+    def display_card(self, side: bool, test_term: str, test_def:str) -> None:
+        """ Display term and definition of the flashcard
+        
+        Parameter
+        ---------------
+        side: bool
+            Boolean value to display term or definition
+        test_term: str
+            Flashcard term
+        test_def: str
+            Flashcard definition
+        
+        Return
+        ---------------
+        None
+        """
         first = "Term" if side else "Definition"
         second = "Definition" if first == 'Term' else "Term"
         print(f"{first}:\n\t{test_term if first == 'Term' else test_def}\n")
@@ -280,8 +330,17 @@ class Quiz:
         print(f"\n{second}:\n\t{test_def if second == 'Definition' else test_term}\n")
 
 
-    def practice_flashcard(self):
-        """ A function to practice existing flashcards and get score"""
+    def practice_flashcard(self) -> None:
+        """ A function to practice existing flashcards and display number of correct guesses
+        
+        Parameter
+        ---------------
+        None
+        
+        Return
+        ---------------
+        None
+        """
         lst =[]
         ans = ""
         score =0

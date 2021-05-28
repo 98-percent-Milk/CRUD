@@ -7,11 +7,13 @@ db = SQLAlchemy()
 
 
 class flash_card(db.Model):
+    """ Main database for the web quizinator """
     id = db.Column('id', db.Integer, primary_key=True)
     term = db.Column('term', db.String(50))
     definition = db.Column('def', db.String(50))
 
     def __init__(self, term, definition):
+        """ Initialize the database """
         self.term = term
         self.definition = definition
 

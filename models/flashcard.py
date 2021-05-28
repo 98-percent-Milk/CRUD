@@ -37,7 +37,17 @@ class FlashCard:
         else:
             raise ValueError
 
-    def serialize(self):
+    def serialize(self) -> dict:
+        """ Convert flashcard object into dictionary format
+
+        Parameter
+        --------------
+        None
+
+        Return
+        -------------
+        dictionary
+        """
         return {
             'id': self.id,
             'term': self.term,

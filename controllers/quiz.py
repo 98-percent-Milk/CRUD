@@ -4,10 +4,21 @@ from views import Menu
 class QuizController():
     """ Main function that runs the quizinator app """
     def __init__(self):
+        """ Initiate quizController class """
         self.quiz = Quiz()
         self.menu = Menu()
 
     def run(self):
+        """ Main loop for operating quizinator app 
+        
+        Parameter
+        -------------------
+        None
+
+        Return
+        -------------------
+        None
+        """
         while True:
             self.menu.display_menu
             choice = self.menu._get_choice_input
