@@ -2,8 +2,8 @@
 import pytest
 import mock
 import builtins
-from flashcard import FlashCard
-from quizinator import Quiz
+from models import FlashCard
+from controllers import Quiz
 
 @pytest.fixture(name='flashcard')
 def fixture_flashcard():
