@@ -18,6 +18,38 @@ All required modules are listed in the text file: requirements.txt
 
 ## Instructions
 ### Terminal
+1. Start the application with the command: `python main.py`
+2. Using the terminal, you can choose your action by typing in the corresponding number
+   
+![image](./images/terminal.png)
+
+- Add flashcard: You can enter the Term and Definition
+   
+![image](./images/add_terminal.png)
+
+- View existing flashcards: You can see all the cards in your set
+   
+![image](./images/view_terminal.png)
+
+- Update flashcard: You can edit specific flashcards
+   
+![image](./images/update.png)
+
+- Delete flashcard: You can delete an existing flashcard
+   
+![image](./images/delete.png)
+
+- Search flashcard: Search for specific flashcard
+   
+![image](./images/search.png)
+
+- Learn flashcards: Going over flashcards "flipping" card over for the answer
+   
+![image](./images/learn.png)
+
+- Practice flashcard: Testing yourself by requiring you to type in the correct definition
+   
+![image](./images/practice_terminal.png)
 
 ### Web
 1. Start web application with command: `python app.py`
