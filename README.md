@@ -21,18 +21,18 @@ All required modules are listed in the text file: requirements.txt
 
 ### Web
 1. Start web application with command: `python app.py`
-2. In browser, go to **localhost:8000/fc** to access the homepage
-
+2. In browser, go to `localhost:8000/fc` to access the homepage
+  
 ![image](./images/homepage.png)
 
-- You can add new flashcards by using the navigation bar and going to **Add Flashcard**
-
+- You can add new flashcards by using the navigation bar and going to `Add Flashcard`
+   
 ![image](./images/add.png)
 
-- You can view the list of your flashcards and access specific cards to edit or delete under **View All**
-
+- You can view the list of your flashcards and access specific cards to edit or delete under `View All`
+   
 ![image](./images/view.png)
 
-- You will also be able to test your knowledge and memory under **Practice**
-
+- You will also be able to test your knowledge and memory under `Practice`
+   
 ![image](./images/practice.png)
