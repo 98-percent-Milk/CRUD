@@ -187,6 +187,10 @@ class Quiz:
         ---------------
         None
         """
+        length = len(self.quizinator)
+        if length == 1:
+            print('there are no flashcards in your study set')
+            exit()
         user_input  = input('Enter the flashcard id you want to remove: ')
         while user_input not in self.quizinator.keys():
             print('There is no flashcard', user_input)
@@ -345,8 +349,15 @@ class Quiz:
         ans = ""
         score =0
         while ans!= 'q':
-            id_lst =   [x[0] for x in self._flashcard]
+            flashcards = [
+            [k,self.quizinator[k]['term']] for k in self.quizinator.keys()
+                            if isinstance(self.quizinator[k], dict)
+                          ]
+            id_lst =   [x[0] for x in flashcards]
             length = len(id_lst)
+            if length == 0:
+                print('there are no flashcards in your study set')
+                break
             ran_num = random.randint(0, length -1 )
             while ran_num not in lst:
                 ran_term = id_lst[ran_num]
