@@ -25,8 +25,12 @@ def main() -> None:
             quiz.edit_flashcard(term)
 
         elif choice == 4:
-            menu.display_frame('Here are your flashcards:')
-            quiz.view_flashcard()
+            terms = {}
+            for i,j in quiz.quizinator.items():
+                if i == 'id':
+                    continue
+                else:
+                    print ('id :', i,"," 'term :', j['term'])
             print()
             quiz.remove_flashcard()
 
