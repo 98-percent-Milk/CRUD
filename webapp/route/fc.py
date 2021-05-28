@@ -78,7 +78,7 @@ def update(fc_id: int):
         if found_fc.term == "":
             flash("Cannot save, new term not entered")
             return render_template('single_flashcard.html', card=found_fc)
-        if found_fc.definition == "":
+        elif found_fc.definition == "":
             flash("Cannot save, new definition not entered")
             return render_template('single_flashcard.html', card=found_fc)
         else:

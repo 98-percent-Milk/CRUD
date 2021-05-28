@@ -3,11 +3,10 @@
 # Author: Team 3
 # Date: April 30th, 2021
 import json
-from web_version.the_app.route.fc import practice
-from menu import Menu
-from flashcard import FlashCard
-from os import path
 import random
+from os import path
+from models import FlashCard
+from views import Menu
 
 menu = Menu()
 
@@ -129,6 +128,11 @@ class Quiz:
         with open(self.path, 'w') as fp:
             json.dump(self.quizinator, fp, indent=4)
 
+        self._flashcard = [
+            [k,self.quizinator[k]['term']] for k in self.quizinator.keys()
+                            if isinstance(self.quizinator[k], dict)
+                          ]
+
     def edit_flashcard(self, key:str) -> None:
         """ Allows you to edit existing flashcards 
         
@@ -145,7 +149,7 @@ class Quiz:
         if key not in [x[1] for x in self._flashcard]:
             raise ValueError
         
-        print(f"---Editing <{key}> flashcard---")
+        print(f"\n---Editing <{key}> flashcard---")
         for card in self._flashcard:
             if key == card[1]:
                 fc_id = card[0] # getting flashcard unique id
@@ -153,8 +157,8 @@ class Quiz:
                 new_definition = self._get_input('Please input new definition: ')
                 self.quizinator[fc_id]['term'] = new_term
                 self.quizinator[fc_id]['def'] = new_definition
+                self.save_quizinator()
                 break
-        self.save_quizinator()
 
 
     def view_flashcard(self) -> None:
@@ -170,7 +174,7 @@ class Quiz:
         """
         for flashcard in self.quizinator:
             if flashcard != "id":
-                print(f'Term: {self.quizinator[flashcard]["term"]}\nDefinition:{self.quizinator[flashcard]["def"]}')
+                print(f'ID: {self.quizinator[flashcard]["id"]}\nTerm: {self.quizinator[flashcard]["term"]}\nDefinition: {self.quizinator[flashcard]["def"]}\n')
 
     def remove_flashcard(self) -> None:
         """ takes flashcard_id as input and deletes the coressponding flashcard
@@ -188,7 +192,7 @@ class Quiz:
             print('There is no flashcard', user_input)
             user_input = input('Re-enter the term you want to remove: ')
         self.quizinator.pop(user_input)
-        print('the flashcard', user_input ,' has been deleted')
+        print('Flashcard', user_input,'has been removed.')
         self.quizinator['id'].append(user_input)
         self.save_quizinator()
 
@@ -259,7 +263,7 @@ class Quiz:
 
     def search_flashcard(self, term):
         if term not in [x[1] for x in self._flashcard]:
-            raise ValueError
+            raise ValueError("Term not in database.")
         else:
             for i in self._flashcard:
                 if term == i[1]:
