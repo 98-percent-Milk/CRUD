@@ -3,6 +3,7 @@ This is a quizzing/flashcard application meant to help users study in a simple m
 
 ## Requirements
 All required modules are listed in the text file: requirements.txt   
+   
 *after installation, you can safely delete the following:*
 - .gitignore
 - .travis.yml
