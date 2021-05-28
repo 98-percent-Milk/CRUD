@@ -7,7 +7,7 @@ All required modules are listed in the text file: requirements.txt
 *after installation, you can safely delete the following:*
 - .gitignore
 - .travis.yml
-- README.md
+- README.md and images folder
 - requirements.txt
 
 ## How to Install
